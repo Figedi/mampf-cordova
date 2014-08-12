@@ -24,5 +24,14 @@
     "fontawesome": "~4.1.0",
     "onsenui": "~1.1.1",
     "angular": "~1.2.21"
+  },
+  "overrides": {
+    "onsenui": {
+      "main": [
+        "build/js/onsenui.js",
+        "build/css/onsenui.css",
+        "build/css/onsen-css-components.css"
+      ]
+    }
   }
 }

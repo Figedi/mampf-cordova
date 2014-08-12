@@ -6,13 +6,20 @@ html
     link(rel="stylesheet", type="text/css", href="vendor/css/vendor.min.css")
     link(rel="stylesheet", type="text/css", href="css/app.css")
     meta(name="msapplication-tap-highlight", content="no")
-    title Hello World
-  body
-    .app
-      h1 Apache Cordova
-      #deviceready.blink
-        p.event.listening Connecting to Device
-        p.event.received Device is Ready
+    title Mampf
+  body(ng-app="mampfApp")
+    .app(ng-controller="MainCtrl")
+      ons-navigator(title="Testo")
+        ons-page
+          ons-toolbar
+            .center Mampf Main
+          .body
+
+            ons-button(ng-click="onSpinClick()")
+              i.fa.fa-refresh(ng-class="{ 'fa-spin': spinMe }")
+              | Spinne mich iks deh
+
+
     script(type="text/javascript", src="cordova.js")
     script(type="text/javascript", src="vendor/js/vendor.min.js")
     script(type="text/javascript", src="js/app.min.js")
