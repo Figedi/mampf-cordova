@@ -23,7 +23,8 @@
   "dependencies": {
     "fontawesome": "~4.1.0",
     "onsenui": "~1.1.1",
-    "angular": "~1.2.21"
+    "angular": "~1.2.21",
+    "angular-touch": "~1.2.22"
   },
   "overrides": {
     "onsenui": {
