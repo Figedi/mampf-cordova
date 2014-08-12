@@ -4,4 +4,5 @@ plugins/*
 !plugins/ios.json
 node_modules
 src/vendor
+www/vendor
 .sass-cache

@@ -13,3 +13,10 @@ Run `gulp` from project directory for serve/jade/coffee/sass/bower/browsersync
 Run `gulp build` for building, i.e. copying content into www/
 
 
+## Development
+
+First make sure to install all dependencies:
+
+* npm install from project directory for gulp environment
+* bower install from project directory for clientside dependencies (i.e. angular)
+

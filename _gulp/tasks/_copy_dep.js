@@ -13,11 +13,12 @@ gulp.task('copy-dep', function() {
   var jsFilter = gulpFilter('**/*.js');
   var cssFilter = gulpFilter('**/*.css');
   var fontRegex = /\.(eot|svg|ttf|woff|otf)$/;
+
   return gulp.src(bower())
-    .pipe(jsFilter)
-    .pipe(uglify({mangle: false, compress: false}))
-    .pipe(concat('js/vendor.min.js'))
-    .pipe(gulp.dest(DEST))
+     .pipe(jsFilter)
+     .pipe(uglify({mangle: false, compress: false}))
+     .pipe(concat('js/vendor.min.js'))
+     .pipe(gulp.dest(DEST))
     .pipe(jsFilter.restore())
     .pipe(cssFilter)
     //.pipe(csso()) // deactivate csso for now, since onsen ui has a css bug in css components
