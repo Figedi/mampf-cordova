@@ -1,4 +1,4 @@
-MainCtrl = ['$scope', ($scope) ->
+MainCtrl = ['$scope', 'device', ($scope, device) ->
   $scope.foo = "bar"
   $scope.spinMe = true
   $scope.onSpinClick = ->
