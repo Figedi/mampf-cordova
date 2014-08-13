@@ -9,17 +9,13 @@ html
     title Mampf
   body(ng-app="mampfApp")
     .app(ng-controller="MainCtrl")
-      ons-navigator(title="Testo")
+      ons-navigator(title="Test")
         ons-page
           ons-toolbar
-            .center Mampf Main
+            .center Mampf Mampf
           .body
-
-            ons-button(ng-click="onSpinClick()")
-              i.fa.fa-refresh(ng-class="{ 'fa-spin': spinMe }")
-              | Spinne mich iks deh
-
-
+            input(type="email", ng-model="user.email")
+            | {{user.emailHash}}
     script(type="text/javascript", src="cordova.js")
     script(type="text/javascript", src="vendor/js/vendor.min.js")
     script(type="text/javascript", src="js/app.min.js")

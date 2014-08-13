@@ -1,8 +1,11 @@
-#wrapper for phonegap device api
+#test-wrapper for phonegap device api
 dvc = ->
   wrapper = {}
-  if device?
-    wrapper[m] = device[m] for m in ['cordova', 'model', 'name', 'platform', 'uuid', 'version']
+  for m in ['cordova', 'model', 'name', 'platform', 'uuid', 'version']
+    wrapper[m] = if device? #safely check if device is available
+      device[m]
+    else
+      null
   wrapper
 
 module.exports = dvc
