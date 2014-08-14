@@ -10,9 +10,9 @@ html
   body(ng-app="mampfApp")
     .app(ng-controller="MainCtrl")
         ons-tabbar
-          ons-tabbar-item(active="true",label="Profil",icon="user",page="partials/profile.html")
-          ons-tabbar-item(label="Kontakte",icon="group",page="partials/contacts.html")
           ons-tabbar-item(label="Essen",icon="cutlery",page="partials/lunch.html")
+          ons-tabbar-item(label="Kontakte",icon="group",page="partials/contacts.html")
+          ons-tabbar-item(active="true",label="Profil",icon="user",page="partials/profile.html")
 
     script(type="text/javascript", src="cordova.js")
     script(type="text/javascript", src="vendor/js/vendor.min.js")
