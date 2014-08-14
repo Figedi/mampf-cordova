@@ -9,17 +9,22 @@ html
     title Mampf
   body(ng-app="mampfApp")
     .app(ng-controller="MainCtrl")
-      ons-navigator(title="Testo")
-        ons-page
-          ons-toolbar
-            .center Mampf Main
-          .body
-
-            ons-button(ng-click="onSpinClick()")
-              i.fa.fa-refresh(ng-class="{ 'fa-spin': spinMe }")
-              | Spinne mich iks deh
-
+        ons-tabbar
+          ons-tabbar-item(active="true",label="Profil",icon="user",page="partials/profile.html")
+          ons-tabbar-item(label="Kontakte",icon="group",page="partials/contacts.html")
+          ons-tabbar-item(label="Essen",icon="cutlery",page="partials/lunch.html")
 
     script(type="text/javascript", src="cordova.js")
     script(type="text/javascript", src="vendor/js/vendor.min.js")
     script(type="text/javascript", src="js/app.min.js")
+
+// lustig spaß ->
+  ons-navigator(title="Testo")
+            ons-page
+              ons-toolbar
+                .center Mampf Main
+              .body
+
+                ons-button(ng-click="onSpinClick()")
+                  i.fa.fa-refresh(ng-class="{ 'fa-spin': spinMe }")
+                  | Spinne mich iks deh

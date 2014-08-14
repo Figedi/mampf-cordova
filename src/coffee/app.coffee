@@ -3,6 +3,7 @@ app = angular.module 'mampfApp', ['onsen.directives', 'ngTouch']
 #controllers from other files
 controllers =
   MainCtrl: require('./controllers/main_ctrl.coffee')
+  ContactController: require('./controllers/contact_ctrl.coffee')
 
 app.controller controllers
 

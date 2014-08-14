@@ -1,0 +1,18 @@
+ons-page(class="center")
+	ons-toolbar 
+		.left  
+			ons-back-button Back
+		.center New Page
+
+	section(style="padding: 8px" )
+		div(ng-controller="ContactController")
+			ons-list 
+				ons-list-item  
+					ons-button(modifier="{{modifierStyle}}" ng-click="toggleChooseContact()")
+						| Kontakt 1
+				ons-list-item  
+					ons-button(modifier="{{modifierStyle}}" ng-click="toggleChooseContact()")
+						| Kontakt 2
+				ons-list-item  
+					ons-button(modifier="{{modifierStyle}}" ng-click="toggleChooseContact()")
+						| Kontakt 3
