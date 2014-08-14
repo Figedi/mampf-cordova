@@ -11,9 +11,10 @@ gulp.task('coffee', function() {
         .pipe(browserify({
             transform: ['coffeeify'],
             extensions: ['.coffee'],
-            shim: config.shim
+            shim: config.shim,
+            debug: true //sourcemaps for now
         }))
-        .on('error', function(error) { gutil.log(error) })
+        .on('error', function(error) { gutil.log(error); })
         .pipe(concat('app.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('www/js'));
