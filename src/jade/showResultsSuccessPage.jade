@@ -1,0 +1,26 @@
+ons-navigator
+  ons-page(class="center")
+    ons-toolbar
+      .center Ergebnisse - Erfolgreiche Suche
+
+    section(style="padding: 8px")
+      div
+        | dummy umgebung für Google Maps Location
+
+    section(style="padding: 8px")
+      div
+        | Uhrzeit
+
+    section(style="padding: 8px")
+      ons-row(style="padding: 8px")
+        ons-button(ng-click="ons.navigator.pushPage('partials/chooseContactsPage.html')" )
+          | Kontakte anzeigen
+          ons-icon(icon="group")
+      ons-row(style="padding: 8px")
+        ons-button(ng-click="ons.navigator.pushPage('partials/profile.html')" )
+          | Profil anzeigen
+          ons-icon(icon="user")
+      ons-row(style="padding: 8px")
+        ons-button(ng-click="ons.navigator.pushPage('partials/lunch.html')" )
+          | Neue Anfrage
+          ons-icon(icon="cutlery")
