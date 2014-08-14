@@ -8,7 +8,7 @@ app.constant constants
 #controllers from other files
 controllers =
   MainCtrl: require('./controllers/main_ctrl.coffee')
-  ContactController: require('./controllers/contact_ctrl.coffee')
+  ContactCtrl: require('./controllers/contact_ctrl.coffee')
 
 app.controller controllers
 #factories from other files
