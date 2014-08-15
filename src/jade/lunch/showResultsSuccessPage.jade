@@ -13,14 +13,14 @@ ons-navigator
 
     section(style="padding: 8px")
       ons-row(style="padding: 8px")
-        ons-button(ng-click="ons.navigator.pushPage('partials/chooseContactsPage.html')" )
+        ons-button(ng-click="ons.navigator.pushPage('partials/chooseContactsPage.html', { animation : 'slide' } )" )
           | Kontakte anzeigen
           ons-icon(icon="group")
       ons-row(style="padding: 8px")
-        ons-button(ng-click="ons.navigator.pushPage('partials/profile.html')" )
+        ons-button(ng-click="ons.navigator.pushPage('partials/profile.html', { animation : 'slide' } )" )
           | Profil anzeigen
           ons-icon(icon="user")
       ons-row(style="padding: 8px")
-        ons-button(ng-click="ons.navigator.pushPage('partials/lunch.html')" )
+        ons-button(ng-click="ons.navigator.pushPage('partials/lunch.html', { animation : 'slide' } )" )
           | Neue Anfrage
           ons-icon(icon="cutlery")

@@ -8,8 +8,8 @@
 }
 
 .map {
-  height: 400px;
-  width: 600px;
+  height: 75%;
+  width: 75%;
   margin: auto;
 }
 ons-list-item.selected {
@@ -17,12 +17,14 @@ ons-list-item.selected {
   color: #fff;
 }
 
-.lunchButtons button {
-  width: 60%;
-}
-
 .profileButtons button {
   width: 45%;
+  text-align: center;
+  margin-top: 16px
+}
+
+.greatButtons button {
+  width: 60%;
   text-align: center;
   margin-top: 16px
 }

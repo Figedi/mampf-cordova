@@ -13,5 +13,5 @@ ons-page(class="center", ng-controller="MapsCtrl")
         ons-button(style="display: block; width: 95%",ng-click="ons.navigator.popPage()")
           | Fertig
       ons-col
-        ons-button(style="display: block; width: 95%", ng-click="ons.navigator.pushPage('partials/profile/addNewLocationPage.html')")
+        ons-button(style="display: block; width: 95%", ng-click="ons.navigator.pushPage('partials/profile/addNewLocationPage.html', { animation : 'slide' } )")
           | Neuen Ort erstellen

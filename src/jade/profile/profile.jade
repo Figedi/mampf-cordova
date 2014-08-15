@@ -10,12 +10,12 @@ ons-navigator
     .profileButtons
       ons-row(style="padding: 8px")
         ons-col(align="center")
-          ons-button(ng-click="ons.navigator.pushPage('partials/profile/showLocationsPage.html')")
+          ons-button(ng-click="ons.navigator.pushPage('partials/profile/showLocationsPage.html', { animation : 'slide' } )")
             | Orte anzeigen
             ons-icon(icon="map-marker")
 
       ons-row(style="padding: 8px")
         ons-col(align="center")
-          ons-button(ng-click="ons.navigator.pushPage('partials/profile/addNewLocationPage.html')")
+          ons-button(ng-click="ons.navigator.pushPage('partials/profile/addNewLocationPage.html', { animation : 'slide' } )")
             | Ort hinzufügen
             ons-icon(icon="plus")

@@ -7,16 +7,20 @@ ons-navigator
       div
         | Es konnten keine treffenden Personen gefunden werden. Aktualisieren Sie bitte die Anfrage.
 
-    section(style="padding: 8px")
-      ons-row(style="padding: 8px")
-        ons-button(ng-click="ons.navigator.pushPage('partials/lunch/lunch.html')" )
-          | Neue Anfrage
-          ons-icon(icon="cutlery")
-      ons-row(style="padding: 8px")
-        ons-button(ng-click="ons.navigator.pushPage('partials/profile/profile.html')" )
-          | Profil anzeigen
-          ons-icon(icon="user")
-      ons-row(style="padding: 8px")
-        ons-button(ng-click="ons.navigator.pushPage('partials/contacts/contacts.html')" )
-          | Kontakte anzeigen
-          ons-icon(icon="group")
+    .greatButtons
+      section(style="padding: 8px")
+        ons-row(align="center")
+          ons-col
+            ons-button(ng-click="ons.navigator.pushPage('partials/lunch/lunch.html', { animation : 'slide' } )" )
+              | Neue Anfrage
+              ons-icon(icon="cutlery")
+        ons-row(align="center")
+          ons-col
+            ons-button(ng-click="ons.navigator.pushPage('partials/profile/profile.html', { animation : 'slide' } )" )
+              | Profil anzeigen
+              ons-icon(icon="user")
+        ons-row(align="center")
+          ons-col
+            ons-button(ng-click="ons.navigator.pushPage('partials/contacts/contacts.html', { animation : 'slide' } )" )
+              | Kontakte anzeigen
+              ons-icon(icon="group")

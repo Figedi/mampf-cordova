@@ -10,23 +10,23 @@ ons-navigator
         ons-col
           input(type="time", class="text-input", ng-model="endTime", placeholder="14:00", style="text-align:center;display: block; width: 100%")
 
-    .lunchButtons
+    .greatButtons
       ons-row(style="padding: 8px")
         ons-col(align="center")
-          ons-button(ng-click="ons.navigator.pushPage('partials/lunch/chooseLocationPage.html')" )
+          ons-button(ng-click="ons.navigator.pushPage('partials/lunch/chooseLocationPage.html', { animation : 'slide' } )" )
             | Ort auswählen
           br
           | Ausgewählter Ort: test
 
       ons-row(style="padding: 8px")
         ons-col(align="center")
-          ons-button(ng-click="ons.navigator.pushPage('partials/lunch/chooseContactsPage.html')" )
+          ons-button(ng-click="ons.navigator.pushPage('partials/lunch/chooseContactsPage.html', { animation : 'slide' } )" )
             | Kontakte auswählen
           br
           | Anzahl Kontakte: 1111
 
       ons-row(style="padding: 8px;margin-top: 16px")
         ons-col(align="center")
-          ons-button(ng-click="ons.navigator.pushPage('partials/lunch/showResultsFailurePage.html')" )
+          ons-button(ng-click="ons.navigator.pushPage('partials/lunch/showResultsFailurePage.html', { animation : 'slide' } )" )
             | Anfrage verschicken
             ons-icon(icon="cutlery")

@@ -9,6 +9,7 @@ ctrl = ['$scope', 'geoLocation', ($scope, geoLocation) ->
       selected: false
     }
   ]
+  $scope.cityCount = $scope.cities.length
   $scope.selectedMap = null
   $scope.position = null
   $scope.marker = null
