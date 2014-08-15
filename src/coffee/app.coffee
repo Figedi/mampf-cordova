@@ -26,6 +26,7 @@ app.controller controllers
 
 directives =
   contactEntry: require('./directives/contact_entry.coffee')
+  mapEntry: require('./directives/map_entry.coffee')
 
 app.directive directives
 

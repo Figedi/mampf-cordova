@@ -1,17 +1,12 @@
 <!--ons-navigator-->
-ons-page(class="center")
+ons-page(class="center", ng-controller="MapsCtrl")
   ons-toolbar
     .center Ort auswählen
 
   section(style="float: center; padding: 8px")
     div
       ons-list
-        ons-list-item
-            | Ort 1
-        ons-list-item
-            | Ort 2
-        ons-list-item
-            | Ort 3
+        map-entry(ng-repeat="city in cities")
   section(style="float: center; padding: 8px")
     ons-row
       ons-col
