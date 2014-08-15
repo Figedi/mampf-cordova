@@ -5,14 +5,10 @@ contact = ['$window', '$timeout', '$q', ($window, $timeout, $q) ->
       deferred.resolve(contact)
     , (err) ->
       deferred.reject(err)
-    # $window.plugins.ContactChooser.chooseContact (contactInfo) ->
-    #   $timeout ->
-    #     deferred.resolve(contactInfo)
-    #   , 0
     deferred.promise
 
   {
-    get: _get #-> _get()
+    get: _get
   }
 ]
 module.exports = contact

@@ -4,13 +4,10 @@ ons-page(class="center")
 
   section(style="padding: 8px" )
     div(ng-controller="ContactCtrl")
+      | Selected Contacts {{(contacts | filter:{selected: true}).length}}
       ons-list
-        ons-list-item
-          | Kontakt 1
-        ons-list-item
-          | Kontakt 2
-        ons-list-item
-          | Kontakt 3
+        contact-entry(ng-repeat="contact in contacts")
+
   section(style="padding: 8px")
     ons-button(ng-click="ons.navigator.popPage();")
       | Fertig

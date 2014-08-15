@@ -12,6 +12,7 @@ factories =
   cordovaReady   : require('./factories/cordova_ready.coffee')
   contactChooser : require('./factories/contact_chooser.coffee')
   geoLocation    : require('./factories/geolocation.coffee')
+  sharedData    : require('./factories/shared_data.coffee')
 
 app.factory factories
 
@@ -22,6 +23,11 @@ controllers =
   MapsCtrl    : require('./controllers/maps_ctrl.coffee')
 
 app.controller controllers
+
+directives =
+  contactEntry: require('./directives/contact_entry.coffee')
+
+app.directive directives
 
 window.onGoogleReady = ->
   console.log("google is ready")

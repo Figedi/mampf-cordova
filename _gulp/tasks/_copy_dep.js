@@ -13,7 +13,6 @@ gulp.task('copy-dep', function() {
   var jsFilter = gulpFilter('**/*.js');
   var cssFilter = gulpFilter('**/*.css');
   var fontRegex = /\.(eot|svg|ttf|woff|otf)$/;
-  console.log("it works", bower());
   return gulp.src(bower())
      .pipe(jsFilter)
      .pipe(uglify({mangle: false, compress: false}))
