@@ -5,6 +5,6 @@ var gulp       = require('gulp'),
 gulp.task('watch', function() {
     gulp.watch('src/coffee/**/*.coffee', ['coffee']);
     gulp.watch(['src/sass/*.scss', 'src/sass/*.sass'], ['sass']);
-    gulp.watch('src/jade/*.jade', ['jade']);
+    gulp.watch('src/jade/**/*.jade', ['jade']);
     gulp.watch('src/img/*', ['images']);
 });

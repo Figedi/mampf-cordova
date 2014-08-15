@@ -8,7 +8,7 @@ gulp.task('jade', function() {
     .pipe(jade())
     .on('error', function(error) { gutil.log(error) })
     .pipe(gulp.dest('www/'));
-    return gulp.src(['src/jade/*.jade', '!src/jade/index.jade'])
+    return gulp.src(['src/jade/**/*.jade', '!src/jade/index.jade'])
         .pipe(jade())
         .on('error', function(error) { gutil.log(error) })
         .pipe(gulp.dest('www/partials'));

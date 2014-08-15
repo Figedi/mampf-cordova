@@ -1,0 +1,16 @@
+ons-page(class="center")
+  ons-toolbar
+    .center Kontakte auswählen
+
+  section(style="padding: 8px" )
+    div(ng-controller="ContactCtrl")
+      ons-list
+        ons-list-item
+          | Kontakt 1
+        ons-list-item
+          | Kontakt 2
+        ons-list-item
+          | Kontakt 3
+  section(style="padding: 8px")
+    ons-button(ng-click="ons.navigator.popPage();")
+      | Fertig

@@ -1,22 +1,31 @@
-app = angular.module 'mampfApp', ['onsen.directives', 'ngTouch', 'ngMd5']
+app = angular.module 'mampfApp', ['onsen.directives', 'ngTouch', 'ngMd5', 'ui.map']
 #app config/statics
 constants =
   config: require('./config/static.coffee')
   _: window._ #lodash for DI
 
 app.constant constants
-#controllers from other files
-controllers =
-  MainCtrl: require('./controllers/main_ctrl.coffee')
-  ContactCtrl: require('./controllers/contact_ctrl.coffee')
 
-app.controller controllers
 #factories from other files
 factories =
-  device:       require('./factories/device.coffee')
-  cordovaReady: require('./factories/cordova_ready.coffee')
+  device         : require('./factories/device.coffee')
+  cordovaReady   : require('./factories/cordova_ready.coffee')
+  contactChooser : require('./factories/contact_chooser.coffee')
+  geoLocation    : require('./factories/geolocation.coffee')
 
 app.factory factories
+
+#controllers from other files
+controllers =
+  MainCtrl    : require('./controllers/main_ctrl.coffee')
+  ContactCtrl : require('./controllers/contact_ctrl.coffee')
+  MapsCtrl    : require('./controllers/maps_ctrl.coffee')
+
+app.controller controllers
+
+window.onGoogleReady = ->
+  console.log("google is ready")
+  angular.bootstrap(document.getElementsByTagName('body'), ['mampfApp'])
 
 
 

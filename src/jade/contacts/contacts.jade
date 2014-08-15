@@ -1,0 +1,13 @@
+ons-navigator(ng-controller="ContactCtrl")
+  ons-page
+    ons-toolbar
+      .center {{foo}} Kontakte
+      .right
+        ons-toolbar-button(ng-click="contactAdd()")
+          ons-icon(icon="plus")
+    section(style="padding: 8px")
+      ons-list
+        ons-list-item(ng-repeat="contact in contacts") {{contact.displayName}}
+    section(style="float: center; padding: 8px")
+      ons-button
+        | Neuen Kontakt hinzufügen (Systemdialog?)

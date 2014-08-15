@@ -1,0 +1,17 @@
+ons-navigator
+  ons-page
+    ons-toolbar
+      .center Profil
+
+    section(style="padding: 8px")
+      input(type="text", class="text-input", ng-model="profileName", placeholder="Namen eingeben", style="display: block; width: 100%")
+    section(style="padding: 8px")
+      input(type="tel", class="text-input", ng-model="profilePhoneNumber", placeholder="Handynummer eingeben", style="display: block; width: 100%")
+    section(style="padding: 8px")
+      ons-toolbar-button(ng-click="ons.navigator.pushPage('partials/profile/showLocationsPage.html')")
+        | Orte anzeigen
+        ons-icon(icon="arrow-right")
+    section(style="padding: 8px")
+      ons-toolbar-button(ng-click="ons.navigator.pushPage('partials/profile/addNewLocationPage.html')")
+        | Ort hinzufügen
+        ons-icon(icon="plus")

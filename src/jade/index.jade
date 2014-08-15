@@ -7,13 +7,14 @@ html
     link(rel="stylesheet", type="text/css", href="css/app.css")
     meta(name="msapplication-tap-highlight", content="no")
     title Mampf
-  body(ng-app="mampfApp")
+  body
     .app(ng-controller="MainCtrl")
         ons-tabbar
-          ons-tabbar-item(label="Essen",icon="cutlery",page="partials/lunch.html")
-          ons-tabbar-item(label="Kontakte",icon="group",page="partials/contacts.html")
-          ons-tabbar-item(active="true",label="Profil",icon="user",page="partials/profile.html")
+          ons-tabbar-item(label="Essen",icon="cutlery",page="partials/lunch/lunch.html")
+          ons-tabbar-item(label="Kontakte",icon="group",page="partials/contacts/contacts.html")
+          ons-tabbar-item(active="true",label="Profil",icon="user",page="partials/profile/profile.html")
 
     script(type="text/javascript", src="cordova.js")
     script(type="text/javascript", src="vendor/js/vendor.min.js")
+    script(type="text/javascript", src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=onGoogleReady")
     script(type="text/javascript", src="js/app.min.js")

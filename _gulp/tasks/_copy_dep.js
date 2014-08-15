@@ -1,7 +1,7 @@
 var gulp       = require('gulp'),
     uglify     = require('gulp-uglify'),
     concat     = require('gulp-concat'),
-    csso       = require('gulp-csso')
+    csso       = require('gulp-csso'),
     gutil      = require('gulp-util'),
     bower      = require('main-bower-files'),
     gulpFilter = require('gulp-filter'),
@@ -13,7 +13,7 @@ gulp.task('copy-dep', function() {
   var jsFilter = gulpFilter('**/*.js');
   var cssFilter = gulpFilter('**/*.css');
   var fontRegex = /\.(eot|svg|ttf|woff|otf)$/;
-
+  console.log("it works", bower());
   return gulp.src(bower())
      .pipe(jsFilter)
      .pipe(uglify({mangle: false, compress: false}))
@@ -27,7 +27,7 @@ gulp.task('copy-dep', function() {
     .pipe(cssFilter.restore())
     .pipe(rename(function(path) {
        if (fontRegex.test(path.extname)) {
-         path.dirname = '/fonts'
+         path.dirname = '/fonts';
        }
     }))
     //write fonts to destination

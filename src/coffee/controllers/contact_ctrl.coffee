@@ -1,9 +1,14 @@
-ctrl = ['$scope', 'device', ($scope, device) ->
-  $scope.contactSelected = false
-  $scope.modifierStyle = 'light'
-  $scope.toggleChooseContact = ->
-    $scope.modifierStyle = if $scope.contactSelected then 'normal' else 'light'
-    $scope.contactSelected = not $scope.contactSelected
+ctrl = ['$scope', 'contactChooser', ($scope, contactChooser) ->
+  $scope.contacts = [
+    {
+      displayName: "dummy"
+    }
+  ]
+  $scope.contactAdd = ->
+    contactChooser.get().then (results) ->
+      $scope.contacts.push(results)
+    , (err) ->
+      console.log "lol fehler", err
 ]
 
 module.exports = ctrl

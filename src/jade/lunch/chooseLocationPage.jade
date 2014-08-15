@@ -1,0 +1,22 @@
+<!--ons-navigator-->
+ons-page(class="center")
+  ons-toolbar
+    .center Ort auswählen
+
+  section(style="float: center; padding: 8px")
+    div
+      ons-list
+        ons-list-item
+            | Ort 1
+        ons-list-item
+            | Ort 2
+        ons-list-item
+            | Ort 3
+  section(style="float: center; padding: 8px")
+    ons-row
+      ons-col
+        ons-button(style="display: block; width: 95%",ng-click="ons.navigator.popPage()")
+          | Fertig
+      ons-col
+        ons-button(style="display: block; width: 95%", ng-click="ons.navigator.pushPage('partials/profile/addNewLocationPage.html')")
+          | Neuen Ort erstellen
