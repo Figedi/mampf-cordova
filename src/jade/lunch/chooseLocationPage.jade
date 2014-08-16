@@ -6,7 +6,7 @@ ons-page(class="center", ng-controller="MapsCtrl")
   section(style="float: center; padding: 8px")
     div
       ons-list
-        map-entry(ng-repeat="city in cities")
+        ons-list-item(ng-repeat="city in cities", ng-class="{selected: city.selected }", ng-click="toggleCity(city)") {{city.cityName}}
   section(style="float: center; padding: 8px")
     ons-row
       ons-col

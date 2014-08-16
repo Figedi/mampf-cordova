@@ -6,7 +6,7 @@ ons-page(class="center")
     div(ng-controller="ContactCtrl")
       | Selected Contacts {{(contacts | filter:{selected: true}).length}}
       ons-list
-        contact-entry(ng-repeat="contact in contacts")
+        ons-list-item(ng-repeat="contact in contacts", ng-class="{selected: contact.selected }", ng-click="toggleContact(contact)") {{contact.displayName}}
 
   section(style="padding: 8px")
     ons-button(ng-click="ons.navigator.popPage();")

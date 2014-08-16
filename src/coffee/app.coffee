@@ -1,4 +1,4 @@
-app = angular.module 'mampfApp', ['onsen.directives', 'ngTouch', 'ngMd5', 'ui.map']
+app = angular.module 'mampfApp', ['onsen.directives', 'ngTouch', 'ngMd5', 'ui.map', 'angularLocalStorage']
 #app config/statics
 constants =
   config: require('./config/static.coffee')
@@ -23,12 +23,6 @@ controllers =
   MapsCtrl    : require('./controllers/maps_ctrl.coffee')
 
 app.controller controllers
-
-directives =
-  contactEntry: require('./directives/contact_entry.coffee')
-  mapEntry: require('./directives/map_entry.coffee')
-
-app.directive directives
 
 window.onGoogleReady = ->
   console.log("google is ready")

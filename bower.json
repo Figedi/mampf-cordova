@@ -27,7 +27,8 @@
     "angular-touch": "~1.2.22",
     "angular-md5": "~0.1.7",
     "lodash": "~2.4.1",
-    "angular-ui-map": "~0.5.0"
+    "angular-ui-map": "~0.5.0",
+    "angularLocalStorage": "~0.1.7"
   },
   "overrides": {
     "onsenui": {

@@ -1,14 +1,9 @@
-ctrl = ['$scope', 'geoLocation', ($scope, geoLocation) ->
-  $scope.cities = [
-    {
-      cityName: 'Footown'
-      selected: false
-    },
-    {
-      cityName: 'Bartown'
-      selected: false
-    }
-  ]
+ctrl = ['$scope', 'geoLocation', 'storage', 'config', ($scope, geoLocation, storage, config) ->
+
+  # bind storage to scope, thus creating two way binding between
+  # scope AND localstorage, every scope change is saved in localstorage
+  storage.bind($scope, 'cities', { defaultValue: config.dummyCities })
+
   $scope.cityCount = $scope.cities.length
   $scope.selectedMap = null
   $scope.position = null
@@ -21,7 +16,6 @@ ctrl = ['$scope', 'geoLocation', ($scope, geoLocation) ->
   $scope.toggleCity = (city) ->
     c.selected = false for c in $scope.cities
     city.selected = not city.selected
-    $scope.$digest()
 
   $scope.refreshPosition = ->
     geoLocation.getPosition().then (position) ->

@@ -1,19 +1,11 @@
-ctrl = ['$scope', 'contactChooser', 'sharedData', ($scope, contactChooser, sharedData) ->
-  $scope.contacts = [
-    {
-      displayName: "dummy"
-      selected: false
-    },
-    {
-      displayName: "dummy2"
-      selected: false
-    }
-  ]
+ctrl = ['$scope', 'contactChooser', 'sharedData', 'storage', 'config', ($scope, contactChooser, sharedData, storage, config) ->
+
+  # bind storage to scope, thus creating two way binding between
+  # scope AND localstorage, every scope change is saved in localstorage
+  storage.bind($scope, 'contacts', { defaultValue: config.dummyContacts })
+
   $scope.toggleContact = (contact) ->
     contact.selected = not contact.selected
-    #use $digest since toggleContact is called in a DOM event ('click in directive')
-    $scope.$digest()
-
 
   $scope.contactAdd = ->
     contactChooser.get().then (results) ->
