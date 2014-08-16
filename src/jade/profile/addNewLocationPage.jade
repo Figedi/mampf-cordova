@@ -7,15 +7,15 @@ ons-page(class="center", ng-controller="MapsCtrl")
     ons-col
       //| {{position}}
       section(id="map")
-        div(ui-map="mampfMap", ui-options="mapOptions", class="map")
+        div(ui-map="mampfMap", class="map", ui-event="{ 'map-click': 'mapClick($event,$params)' }", ui-options="mapOptions")
         ons-row
           ons-col(align="center")
             | Name:
-            input(type="text",name="LocationName",pattern="[a-uA-Z0-9]+", placeholder="Ort {{cityCount + 1}}", style="text-align: center")
+            input(type="text",pattern="[a-uA-Z0-9]+", style="text-align: center", ng-model="LocationModel")
 
 
   ons-row(style="margin-top: 16px",align="center")
     ons-col
       ons-button(ng-click="refreshPosition()") Position abfragen
     ons-col
-      ons-button(ng-click="ons.navigator.popPage();") Fertig
+      ons-button(ng-click="addNewLocation();ons.navigator.popPage();") Hinzufügen

@@ -8,6 +8,7 @@ ctrl = ['$scope', 'geoLocation', 'storage', 'config', ($scope, geoLocation, stor
   $scope.selectedMap = null
   $scope.position = null
   $scope.marker = null
+  $scope.LocationModel = "Ort " + ($scope.cityCount + 1)
   $scope.mapOptions =
     center: new google.maps.LatLng(35.784, -78.670)
     zoom: 15
@@ -16,6 +17,18 @@ ctrl = ['$scope', 'geoLocation', 'storage', 'config', ($scope, geoLocation, stor
   $scope.toggleCity = (city) ->
     c.selected = false for c in $scope.cities
     city.selected = not city.selected
+
+  $scope.addNewLocation = () ->
+    lat = $scope.marker.getPosition().lat()
+    lng = $scope.marker.getPosition().lng()
+    $scope.cities.push({ cityName: $scope.LocationModel, selected: false, toBeDeleted: false, latitude: lat, longitude: lng })
+
+  $scope.mapClick = ($event, $params) ->
+    console.log "event", $params
+    $scope.setMarkerPosition($params[0].latLng.lat(),$params[0].latLng.lng())
+
+  $scope.setMarkerPosition = (lat,lng) ->
+    $scope.marker.setPosition(new google.maps.LatLng(lat, lng))
 
   $scope.refreshPosition = ->
     geoLocation.getPosition().then (position) ->

@@ -3,15 +3,9 @@ ons-page(class="center")
     .center Gespeicherte Orte
 
   section(style="padding: 8px" )
-    div(ng-controller="ContactCtrl")
+    div(ng-controller="MapsCtrl")
       ons-list
-        //ons-list-item(ng-repeat="location in locations") {{location.Name}}
-        ons-list-item
-          | Ort 1
-        ons-list-item
-          | Ort 2
-        ons-list-item
-          | Ort 3
+        ons-list-item(ng-repeat="city in cities") {{city.cityName}}
   section(style="padding: 8px")
     ons-row
       ons-col(align="center")

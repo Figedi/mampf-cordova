@@ -14,10 +14,14 @@ conf =
     {
       cityName: 'Footown'
       selected: false
+      latitude: -6
+      longitude: -7
     },
     {
       cityName: 'Bartown'
       selected: false
+      latitude: -5
+      longitude: -8
     }
   ]
 module.exports = conf
