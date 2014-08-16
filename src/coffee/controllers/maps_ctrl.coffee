@@ -18,10 +18,16 @@ ctrl = ['$scope', 'geoLocation', 'storage', 'config', ($scope, geoLocation, stor
     c.selected = false for c in $scope.cities
     city.selected = not city.selected
 
+  $scope.deleteAllSelected = ->
+    $scope.deleteCity(city) for city in $scope.cities.filter((city) -> city.selected)
+
+  $scope.deleteCity = (city) ->
+    $scope.cities.splice($scope.cities.indexof(city),1)
+
   $scope.addNewLocation = () ->
     lat = $scope.marker.getPosition().lat()
     lng = $scope.marker.getPosition().lng()
-    $scope.cities.push({ cityName: $scope.LocationModel, selected: false, toBeDeleted: false, latitude: lat, longitude: lng })
+    $scope.cities.push({ cityName: $scope.LocationModel, selected: false, latitude: lat, longitude: lng })
 
   $scope.mapClick = ($event, $params) ->
     console.log "event", $params

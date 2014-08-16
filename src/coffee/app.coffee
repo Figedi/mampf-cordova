@@ -12,15 +12,16 @@ factories =
   cordovaReady   : require('./factories/cordova_ready.coffee')
   contactChooser : require('./factories/contact_chooser.coffee')
   geoLocation    : require('./factories/geolocation.coffee')
-  sharedData    : require('./factories/shared_data.coffee')
+  sharedData     : require('./factories/shared_data.coffee')
 
 app.factory factories
 
 #controllers from other files
 controllers =
-  MainCtrl    : require('./controllers/main_ctrl.coffee')
-  ContactCtrl : require('./controllers/contact_ctrl.coffee')
-  MapsCtrl    : require('./controllers/maps_ctrl.coffee')
+  MainCtrl        : require('./controllers/main_ctrl.coffee')
+  ContactCtrl     : require('./controllers/contact_ctrl.coffee')
+  MapsCtrl        : require('./controllers/maps_ctrl.coffee')
+  LunchController : require('./controllers/lunch_ctrl.coffee')
 
 app.controller controllers
 
