@@ -5,7 +5,9 @@ ons-page(class="center")
   section(style="padding: 8px" )
     div(ng-controller="MapsCtrl")
       ons-list
-        ons-list-item(ng-repeat="city in cities") {{city.cityName}}
+        ons-list-item(ng-repeat="city in cities")
+          span {{city.cityName}}
+          b {{city.latitude}} / {{city.longitude}}
   section(style="padding: 8px")
     ons-row
       ons-col(align="center")

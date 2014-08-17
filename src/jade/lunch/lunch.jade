@@ -1,5 +1,5 @@
-ons-navigator
-  ons-page(ng-controller="LunchController")
+ons-navigator(ng-controller="LunchCtrl")
+  ons-page
     ons-toolbar
       .center Neuer Essensvorschlag
     section(style="margin-top: 20px; padding: 8px; text-align: center" )
@@ -9,24 +9,24 @@ ons-navigator
           input(type="time", class="text-input", ng-model="startTime", placeholder="12:00", style="text-align:center;display: block; width: 95%")
         ons-col
           input(type="time", class="text-input", ng-model="endTime", placeholder="14:00", style="text-align:center;display: block; width: 100%")
-
+    p {{user}}
     .greatButtons
       ons-row(style="padding: 8px")
         ons-col(align="center")
           ons-button(ng-click="ons.navigator.pushPage('partials/lunch/chooseLocationPage.html', { animation : 'slide' } )" )
             | Ort auswählen
           br
-          | Ausgewählter Ort: {{getSelectedCityName()}}
+          | Ausgewählter Ort: {{getSelectedCityName() || "Kein Ort ausgewählt"}}
 
       ons-row(style="padding: 8px")
         ons-col(align="center")
           ons-button(ng-click="ons.navigator.pushPage('partials/lunch/chooseContactsPage.html', { animation : 'slide' } )" )
             | Kontakte auswählen
           br
-          | Anzahl Kontakte: {{getCount()}}
+          | Anzahl ausgewählter Kontakte: {{getCount()}}
 
       ons-row(style="padding: 8px;margin-top: 16px")
         ons-col(align="center")
-          ons-button(ng-click="ons.navigator.pushPage('partials/lunch/showResultsFailurePage.html', { animation : 'slide' } )" )
+          ons-button(ng-click="doRequest()", disabled="{{getCount() == 0 || getSelectedCityName() == null}}" )
             | Anfrage verschicken
             ons-icon(icon="cutlery")

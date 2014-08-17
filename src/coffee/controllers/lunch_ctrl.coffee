@@ -1,11 +1,6 @@
-ctrl = ['$scope', 'sharedData', 'storage', 'config', ($scope, sharedData, storage, config) ->
-  storage.bind($scope, 'contacts', { defaultValue: config.dummyContacts })
-  storage.bind($scope, 'cities', { defaultValue: config.dummyCities })
+ctrl = ['$scope', 'sharedData', 'storage', 'config', 'geoLocation', 'server', ($scope, sharedData, storage, config, geoLocation, server) ->
 
-  $scope.selectedCityName = "Kein Ort ausgewählt"
-  $scope.countSelectedContacts = 0
-  $scope.startTime = '12:00'
-  $scope.endTime = '14:00'
+  storage.bind($scope, 'user')
 
   $scope.getCurrentDateTime = ->
     $scope.startTime = new Date().toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})
@@ -16,12 +11,45 @@ ctrl = ['$scope', 'sharedData', 'storage', 'config', ($scope, sharedData, storag
   $scope.getCurrentDateTime()
 
   $scope.getCount = ->
-    $scope.countSelectedContacts = $scope.contacts.filter( (contact) ->contact.selected).length
-    return $scope.countSelectedContacts
+    sharedData.contacts.filter((contact) -> contact.selected).length
 
   $scope.getSelectedCityName = ->
-    tmp = city.cityName for city in $scope.cities.filter((city) -> city.selected)
-    $scope.selectedCityName = if tmp then tmp else "Kein Ort ausgewählt"
-    return $scope.selectedCityName
+    selectedCity = sharedData.cities.filter((city) -> city.selected)
+    if selectedCity.length then selectedCity[0].cityName else null
+
+
+  $scope.doRequest = ->
+    # first format dates according to API specification
+    tmpDate = new Date()
+    dateString = "#{tmpDate.getFullYear()}-#{tmpDate.getMonth()+1}-#{tmpDate.getDate()}"
+    startTime = new Date(Date.parse("#{dateString}, #{$scope.startTime}")).toISOString()
+    endTime = new Date(Date.parse("#{dateString}, #{$scope.endTime}")).toISOString()
+    # second, fetch invitees' hashes
+    inviteeHashes = sharedData.contacts.filter((contact) -> contact.selected).map((contact) -> contact.telephoneHash)
+    # third, fetch the own users md5
+    telephoneHash = $scope.user.telephoneHash
+    # either fetch the current position or use predefined destination
+
+    selectedCity = sharedData.cities.filter((city) -> city.selected) #if none selected use current position
+    if selectedCity.length
+      request =
+        identity: telephoneHash
+        invitees: inviteeHashes
+        currentPosition:
+          longitude: selectedCity[0].longitude
+          latitude: selectedCity[0].latitude
+        timeSlots: [ #for testing reasons only one allowed
+          {
+            startTime: startTime
+            endTime: endTime
+          }
+        ]
+
+      console.log "reqzest is", request
+      server.create({url: "mampf", data: request }).then (response) ->
+        console.log "we have a response", response
+    #geoLocation.getPosition().then (position) ->
+    #  lngLat = { latitude: position.coords.latitude, longitude: position.coords.longitude }
+
 ]
 module.exports = ctrl

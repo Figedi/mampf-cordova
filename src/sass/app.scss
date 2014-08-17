@@ -10,7 +10,7 @@
 .map {
   height: 75%;
   width: 75%;
-  margin: auto;
+  margin: 5% auto 0 auto;
 }
 
 ons-list-item.selected {
@@ -24,12 +24,15 @@ ons-list-item.selected {
   margin-top: 16px
 }
 
-.profileButtons ons-icon {
-  color: red;
-}
-
 .greatButtons button {
   width: 60%;
   text-align: center;
   margin-top: 16px
+}
+
+.form-label {
+  display: inline-block;
+  max-width: 100%;
+  margin: 5px 5px 5px 0;
+  font-weight: 700;
 }

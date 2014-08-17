@@ -2,7 +2,7 @@ srv = ['$http', 'config', ($http, config) ->
   baseHTTP = (opts) ->
     $http({
       method: opts.method
-      url: "#{config.server}/#{opts.url}"
+      url: "#{config.server}"
       data: opts.data})
   {
     create: (opts) ->

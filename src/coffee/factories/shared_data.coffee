@@ -1,5 +1,6 @@
 shared = ->
   {
-    contacts: selected: []
+    contacts: []
+    cities: []
   }
 module.exports = shared

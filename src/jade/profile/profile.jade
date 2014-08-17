@@ -1,13 +1,11 @@
-ons-navigator
+ons-navigator(ng-controller="ProfileCtrl")
   ons-page
     ons-toolbar
       .center Profil
-
     section(style="padding: 8px")
-      input(type="text", class="text-input", ng-model="profileName", placeholder="Namen eingeben", style="display: block; width: 100%")
-    section(style="padding: 8px")
-      input(type="tel", class="text-input", ng-model="profilePhoneNumber", placeholder="Handynummer eingeben", style="display: block; width: 100%")
-
+      label.form-label Handynummer
+      br
+      input(class="text-input", ng-model="user.telephone", placeholder="Bitte ihre eigene Handynummer eingeben", style="display: block; width: 100%")
     .profileButtons
       ons-row(style="padding: 8px")
         ons-col(align="center")

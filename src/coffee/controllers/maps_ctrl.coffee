@@ -1,4 +1,4 @@
-ctrl = ['$scope', 'geoLocation', 'storage', 'config', ($scope, geoLocation, storage, config) ->
+ctrl = ['$scope', 'geoLocation', 'storage', 'config', 'sharedData', ($scope, geoLocation, storage, config, sharedData) ->
 
   # bind storage to scope, thus creating two way binding between
   # scope AND localstorage, every scope change is saved in localstorage
@@ -8,7 +8,7 @@ ctrl = ['$scope', 'geoLocation', 'storage', 'config', ($scope, geoLocation, stor
   $scope.selectedMap = null
   $scope.position = null
   $scope.marker = null
-  $scope.LocationModel = "Ort " + ($scope.cityCount + 1)
+  $scope.locationModel = "Ort #{$scope.cityCount + 1}"
   $scope.mapOptions =
     center: new google.maps.LatLng(35.784, -78.670)
     zoom: 15
@@ -17,6 +17,7 @@ ctrl = ['$scope', 'geoLocation', 'storage', 'config', ($scope, geoLocation, stor
   $scope.toggleCity = (city) ->
     c.selected = false for c in $scope.cities
     city.selected = not city.selected
+    sharedData.cities = $scope.cities
 
   $scope.deleteAllSelected = ->
     $scope.deleteCity(city) for city in $scope.cities.filter((city) -> city.selected)
@@ -27,7 +28,7 @@ ctrl = ['$scope', 'geoLocation', 'storage', 'config', ($scope, geoLocation, stor
   $scope.addNewLocation = () ->
     lat = $scope.marker.getPosition().lat()
     lng = $scope.marker.getPosition().lng()
-    $scope.cities.push({ cityName: $scope.LocationModel, selected: false, latitude: lat, longitude: lng })
+    $scope.cities.push({ cityName: $scope.locationModel, selected: false, latitude: lat, longitude: lng })
 
   $scope.mapClick = ($event, $params) ->
     console.log "event", $params

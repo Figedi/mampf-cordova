@@ -13,15 +13,17 @@ factories =
   contactChooser : require('./factories/contact_chooser.coffee')
   geoLocation    : require('./factories/geolocation.coffee')
   sharedData     : require('./factories/shared_data.coffee')
+  server         : require('./factories/server.coffee')
 
 app.factory factories
 
 #controllers from other files
 controllers =
-  MainCtrl        : require('./controllers/main_ctrl.coffee')
-  ContactCtrl     : require('./controllers/contact_ctrl.coffee')
-  MapsCtrl        : require('./controllers/maps_ctrl.coffee')
-  LunchController : require('./controllers/lunch_ctrl.coffee')
+  ContactCtrl    : require('./controllers/contact_ctrl.coffee')
+  MapsCtrl       : require('./controllers/maps_ctrl.coffee')
+  LunchCtrl      : require('./controllers/lunch_ctrl.coffee')
+  ProfileCtrl    : require('./controllers/profile_ctrl.coffee')
+
 
 app.controller controllers
 
