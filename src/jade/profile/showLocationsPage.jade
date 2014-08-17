@@ -1,15 +1,15 @@
-ons-page(class="center")
-  ons-toolbar
-    .center Gespeicherte Orte
+ons-navigator(ng-controller="MapsCtrl")
+  ons-page(class="center")
+    ons-toolbar
+      .center Gespeicherte Orte
 
-  section(style="padding: 8px" )
-    div(ng-controller="MapsCtrl")
-      ons-list
-        ons-list-item(ng-repeat="city in cities")
-          span {{city.cityName}}
-          b {{city.latitude}} / {{city.longitude}}
-  section(style="padding: 8px")
-    ons-row
-      ons-col(align="center")
-        ons-button(ng-click="ons.navigator.popPage();")
-          | Zurück
+    section(style="padding: 8px" )
+      div
+        ons-list
+          ons-list-item(class="tappable", modifier="chevron", ng-repeat="city in cities",ng-click="openModalWindow(city.latitude,city.longitude)")
+            span {{city.cityName}}
+    section(style="padding: 8px")
+      ons-row
+        ons-col(align="center")
+          ons-button(ng-click="ons.navigator.popPage();")
+            | Zurück

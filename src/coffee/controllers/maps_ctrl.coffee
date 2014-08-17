@@ -1,5 +1,6 @@
-ctrl = ['$scope', 'geoLocation', 'storage', 'config', 'sharedData', ($scope, geoLocation, storage, config, sharedData) ->
+ctrl = ['$scope', 'geoLocation', 'storage', 'config', 'sharedData', 'ngDialog', ($scope, geoLocation, storage, config, sharedData, ngDialog) ->
 
+#ctrl = ['$scope', 'geoLocation', 'storage', 'config', 'sharedData', ($scope, geoLocation, storage, config, sharedData, ngDialog) ->
   # bind storage to scope, thus creating two way binding between
   # scope AND localstorage, every scope change is saved in localstorage
   storage.bind($scope, 'cities', { defaultValue: config.dummyCities })
@@ -14,10 +15,28 @@ ctrl = ['$scope', 'geoLocation', 'storage', 'config', 'sharedData', ($scope, geo
     zoom: 15
     mapTypeId: google.maps.MapTypeId.ROADMAP
 
+  #ngDialogProvider.setDefaults(
+  #  className: 'ngdialog-theme-default'
+  #  plain: true
+  #  showClose: true
+  #  closeByDocument: true
+  #  closeByEscape: true
+  #)
+
+
   $scope.toggleCity = (city) ->
     c.selected = false for c in $scope.cities
     city.selected = not city.selected
     sharedData.cities = $scope.cities
+
+  $scope.openModalWindow = (latitude, longitude) ->
+    modalCenter = { lat: latitude, lng: longitude }
+    $scope.modalMapOptions =
+      center: modalCenter
+      zoom: 15
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    new google.maps.Marker({ position: modalCenter, map: $scope.modalMampfMap })
+    ngDialog.open({template: 'partials/profile/modalWindowLocation.html'})
 
   $scope.deleteAllSelected = ->
     $scope.deleteCity(city) for city in $scope.cities.filter((city) -> city.selected)
