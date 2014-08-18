@@ -35,8 +35,13 @@ controllers =
   ShowLocationsCtrl     : require('./controllers/profile/show_locations_ctrl.coffee')
   LocationDetailCtrl     : require('./controllers/profile/location_detail_ctrl.coffee')
 
-  #MapsCtrl       : require('./controllers/maps_ctrl.coffee')
 app.controller controllers
+
+directives =
+  sharedValidate: require('./directives/shared_validate.coffee')
+
+app.directive directives
+
 
 # listen to onGoogleReady callback since we are loading the Maps API asynchronously
 # after that we can bootstrap the application for the body element
