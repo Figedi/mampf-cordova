@@ -6,7 +6,8 @@ ProfileCtrl = ['$scope', 'md5', 'config', '_', 'storage', 'sharedData', ($scope,
   $scope.$watch 'user.telephone', _.debounce((newValue) ->
     return unless newValue
     $scope.$apply ->
-      $scope.user.telephoneHash = md5.createHash(""+newValue)
+      $scope.user.telephone = newValue.replace(" ", "")
+      $scope.user.telephoneHash = md5.createHash(""+$scope.user.telephone)
       sharedData.user = $scope.user
   , 500)
 ]
