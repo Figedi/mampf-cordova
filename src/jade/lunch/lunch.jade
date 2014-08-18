@@ -1,4 +1,4 @@
-ons-navigator(ng-controller="LunchCtrl")
+ons-navigator(ng-controller="LunchRequestCtrl")
   ons-page
     ons-toolbar
       .center Neuer Essensvorschlag
@@ -15,7 +15,7 @@ ons-navigator(ng-controller="LunchCtrl")
           ons-button(ng-click="ons.navigator.pushPage('partials/lunch/chooseLocationPage.html', { animation : 'slide' } )" )
             | Ort auswählen
           br
-          | Ausgewählter Ort: {{getSelectedCityName() || "Kein Ort ausgewählt"}}
+          | Ausgewählter Ort: {{getSelectedLocationName() || "Kein Ort ausgewählt"}}
 
       ons-row(style="padding: 8px")
         ons-col(align="center")
@@ -26,6 +26,6 @@ ons-navigator(ng-controller="LunchCtrl")
 
       ons-row(style="padding: 8px;margin-top: 16px")
         ons-col(align="center")
-          ons-button(ng-click="doRequest()", disabled="{{getCount() == 0 || getSelectedCityName() == null}}" )
+          ons-button(ng-click="doRequest()", disabled="{{getCount() == 0 || getSelectedLocationName() == null}}" )
             | Anfrage verschicken
             ons-icon(icon="cutlery")

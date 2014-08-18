@@ -14,15 +14,15 @@ conf =
       telephoneHash: "2180878ef6bb945692cd66a0c053faf0"
     }
   ]
-  dummyCities: [
+  dummyLocations: [
     {
-      cityName: 'Footown'
+      locationName: 'Footown'
       selected: false
       latitude: -6
       longitude: -7
     },
     {
-      cityName: 'Bartown'
+      locationName: 'Bartown'
       selected: false
       latitude: -5
       longitude: -8

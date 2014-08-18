@@ -1,0 +1,23 @@
+###*
+ * @description Choose-Location-Controller: Provides functionality to display all locations
+ * and select one of them for lunch-planning.
+ *
+ * @return {void} No explicit returnvalue needed
+###
+chooseLocation = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, storage, sharedData) ->
+
+  #if user already selected users, return the sharedData object
+  if sharedData.locations.length
+    $scope.locationsForChoose = sharedData.locations
+  else #if no prior selection, return a new object
+    $scope.locations = storage.get('locations')
+    $scope.locationsForChoose = angular.copy($scope.locations)
+    location.selected = false for location in $scope.locationsForChoose
+
+  $scope.toggleLocation = (location) ->
+    c.selected = false for c in $scope.locationsForChoose
+    location.selected = not location.selected
+    sharedData.locations = $scope.locationsForChoose
+]
+
+module.exports = chooseLocation

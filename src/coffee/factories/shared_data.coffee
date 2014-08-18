@@ -1,6 +1,6 @@
 shared = ->
   {
     contacts: []
-    cities: []
+    locations: []
   }
 module.exports = shared

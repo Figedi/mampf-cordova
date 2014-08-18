@@ -1,4 +1,14 @@
-ctrl = ['$scope', 'sharedData', 'storage', 'config', 'geoLocation', 'server', ($scope, sharedData, storage, config, geoLocation, server) ->
+###*
+ * @description Lunch-Request-Controller: Provides the functionality to set multiple lunch-times and
+ * links to choose-location/-contact Pages to select those.
+ * After successfull selection of all neccessary data, it can fire a request
+ * to the server and redirect to the Lunch-Reponse-Controller
+ *
+ * @todo  strip old code
+ *
+ * @return {void} No explicit returnvalue needed
+###
+lunchRequest = ['$scope', 'sharedData', 'storage', 'config', 'geoLocation', 'server', ($scope, sharedData, storage, config, geoLocation, server) ->
 
   storage.bind($scope, 'user')
 
@@ -13,9 +23,9 @@ ctrl = ['$scope', 'sharedData', 'storage', 'config', 'geoLocation', 'server', ($
   $scope.getCount = ->
     sharedData.contacts.filter((contact) -> contact.selected).length
 
-  $scope.getSelectedCityName = ->
-    selectedCity = sharedData.cities.filter((city) -> city.selected)
-    if selectedCity.length then selectedCity[0].cityName else null
+  $scope.getSelectedLocationName = ->
+    selectedLocation = sharedData.locations.filter((location) -> location.selected)
+    if selectedLocation.length then selectedLocation[0].locationName else null
 
 
   $scope.doRequest = ->
@@ -30,14 +40,14 @@ ctrl = ['$scope', 'sharedData', 'storage', 'config', 'geoLocation', 'server', ($
     telephoneHash = $scope.user.telephoneHash
     # either fetch the current position or use predefined destination
 
-    selectedCity = sharedData.cities.filter((city) -> city.selected) #if none selected use current position
-    if selectedCity.length
+    selectedLocation = sharedData.locations.filter((location) -> location.selected) #if none selected use current position
+    if selectedLocation.length
       request =
         identity: telephoneHash
         invitees: inviteeHashes
         currentPosition:
-          longitude: selectedCity[0].longitude
-          latitude: selectedCity[0].latitude
+          longitude: selectedLocation[0].longitude
+          latitude: selectedLocation[0].latitude
         timeSlots: [ #for testing reasons only one allowed
           {
             startTime: startTime
@@ -45,11 +55,10 @@ ctrl = ['$scope', 'sharedData', 'storage', 'config', 'geoLocation', 'server', ($
           }
         ]
 
-      console.log "reqzest is", request
       server.create({url: "mampf", data: request }).then (response) ->
         console.log "we have a response", response
     #geoLocation.getPosition().then (position) ->
     #  lngLat = { latitude: position.coords.latitude, longitude: position.coords.longitude }
 
 ]
-module.exports = ctrl
+module.exports = lunchRequest

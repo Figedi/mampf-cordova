@@ -1,12 +1,11 @@
-<!--ons-navigator-->
-ons-page(class="center", ng-controller="MapsCtrl")
+ons-page.center(ng-controller="ChooseLocationCtrl")
   ons-toolbar
     .center Ort auswählen
 
   section(style="float: center; padding: 8px")
     div
       ons-list
-        ons-list-item(ng-repeat="city in cities", ng-class="{selected: city.selected }", ng-click="toggleCity(city)") {{city.cityName}}
+        ons-list-item(ng-repeat="location in locationsForChoose", ng-class="{selected: location.selected }", ng-click="toggleLocation(location)") {{location.locationName}}
   section(style="float: center; padding: 8px")
     ons-row
       ons-col

@@ -1,0 +1,11 @@
+ons-page.center(ng-controller="LocationDetailCtrl")
+  ons-toolbar
+    .center {{location.locationName}} - Detailansicht
+  section
+    div(ui-map="modalMampfMap", class="map", ui-event="{ 'map-click': 'mapClick($event,$params)' }", ui-options="modalMapOptions")
+    .center
+      br
+      input(class="text-input", ng-model="location.locationName")
+      br
+      br
+      ons-button(ng-click="ons.navigator.popPage()") Speichern & schließen

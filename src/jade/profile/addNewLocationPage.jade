@@ -1,5 +1,4 @@
-
-ons-page(class="center", ng-controller="MapsCtrl")
+ons-page.center(ng-controller="AddLocationCtrl")
   ons-toolbar
     .center Neuen Ort hinzufügen
   ons-row(style="float: center")
@@ -18,4 +17,4 @@ ons-page(class="center", ng-controller="MapsCtrl")
     ons-col
       ons-button(ng-click="refreshPosition()") Position abfragen
     ons-col
-      ons-button(ng-click="addNewLocation();ons.navigator.popPage();") Hinzufügen
+      ons-button(ng-click="addNewLocation() && ons.navigator.popPage();") Hinzufügen
