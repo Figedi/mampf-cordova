@@ -2,6 +2,7 @@ app = angular.module 'mampfApp', ['onsen.directives', 'ngTouch', 'ngMd5', 'ui.ma
 #app config/statics
 constants =
   config: require('./config/static.coffee')
+  constants: require('./config/constants.coffee')
   _: window._ #lodash for DI
 
 app.constant constants

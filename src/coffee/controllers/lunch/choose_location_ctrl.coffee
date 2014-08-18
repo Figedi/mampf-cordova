@@ -6,6 +6,8 @@
 ###
 chooseLocation = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, storage, sharedData) ->
 
+  $scope.positionLocation = sharedData.positionLocation || false
+
   #if user already selected users, return the sharedData object
   if sharedData.locations.length
     $scope.locationsForChoose = sharedData.locations
@@ -15,9 +17,15 @@ chooseLocation = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, 
     location.selected = false for location in $scope.locationsForChoose
 
   $scope.toggleLocation = (location) ->
+    $scope.positionLocation = false
     c.selected = false for c in $scope.locationsForChoose
     location.selected = not location.selected
     sharedData.locations = $scope.locationsForChoose
+
+  $scope.setLocationPosition = ->
+    c.selected = false for c in $scope.locationsForChoose
+    $scope.positionLocation = not $scope.positionLocation
+    sharedData.positionLocation = $scope.positionLocation
 ]
 
 module.exports = chooseLocation
