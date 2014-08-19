@@ -14,17 +14,18 @@ lunchRequest = ['$scope', 'sharedData', 'storage', 'config', 'constants', 'geoLo
 
   # data binding doesnt seem to work without a request data model
 
+  # default value, will be overidden anyways
   $scope.request =
     startTime: "12:00"
     endTime: "14:00"
 
-  $scope.getCurrentDateTime = ->
+  ###$scope.getCurrentDateTime = ->
     $scope.request.startTime = new Date().toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})
     plus2Hours = new Date().getTime() + 1000 * 60 * 60 * 2
     $scope.request.endTime = (new Date(plus2Hours)).toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})
 
   # set current date
-  #$scope.getCurrentDateTime()
+  $scope.getCurrentDateTime()###
 
   $scope.getCount = ->
     sharedData.contacts.filter((contact) -> contact.selected).length

@@ -13,8 +13,9 @@ chooseLocation = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, 
     $scope.locationsForChoose = sharedData.locations
   else #if no prior selection, return a new object
     $scope.locations = storage.get('locations')
-    $scope.locationsForChoose = angular.copy($scope.locations)
-    location.selected = false for location in $scope.locationsForChoose
+    if $scope.locations
+      $scope.locationsForChoose = angular.copy($scope.locations)
+      location.selected = false for location in $scope.locationsForChoose
 
   $scope.toggleLocation = (location) ->
     $scope.positionLocation = false
@@ -23,7 +24,8 @@ chooseLocation = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, 
     sharedData.locations = $scope.locationsForChoose
 
   $scope.setLocationPosition = ->
-    c.selected = false for c in $scope.locationsForChoose
+    if $scope.locationsForChoose
+      c.selected = false for c in $scope.locationsForChoose
     $scope.positionLocation = not $scope.positionLocation
     sharedData.positionLocation = $scope.positionLocation
 ]

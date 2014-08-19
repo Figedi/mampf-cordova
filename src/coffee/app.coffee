@@ -1,9 +1,9 @@
-app = angular.module 'mampfApp', ['onsen.directives', 'ngTouch', 'ngMd5', 'ui.map', 'angularLocalStorage']
+app = angular.module 'mampfApp', ['onsen.directives', 'ngTouch', 'ngMd5', 'ui.map', 'angularLocalStorage', 'ui.validate']
 #app config/statics
 constants =
-  config             : require('./config/static.coffee')
-  constants          : require('./config/constants.coffee')
-  _                  : window._ #lodash for DI
+  config : require('./config/static.coffee')
+  constants : require('./config/constants.coffee')
+  _ : window._ #lodash for DI
 
 app.constant constants
 
@@ -27,9 +27,9 @@ controllers =
   #lunch
   LunchRequestCtrl   : require('./controllers/lunch/lunch_request_ctrl.coffee')
   LunchResponseCtrl  : require('./controllers/lunch/lunch_response_ctrl.coffee')
+  TimeslotCtrl       : require('./controllers/lunch/timeslot_ctrl.coffee')
   ChooseLocationCtrl : require('./controllers/lunch/choose_location_ctrl.coffee')
   ChooseContactCtrl  : require('./controllers/lunch/choose_contact_ctrl.coffee')
-  TimeslotCtrl       : require('./controllers/lunch/timeslot_ctrl.coffee')
 
   #profile
   ProfileCtrl        : require('./controllers/profile/profile_ctrl.coffee')

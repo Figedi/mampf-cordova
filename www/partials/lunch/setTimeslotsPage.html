@@ -1,0 +1,16 @@
+<ons-page ng-controller="TimeslotCtrl" class="center"><ons-toolbar><div class="center">Zeiten auswählen {{timeslots.length}}</div></ons-toolbar><label class="form-label">Start- und Endzeit festlegen</label><ons-row align="center" ng-repeat="timeslot in timeslots" class="bordered"><ons-col><input ui-validate=" 'validate($value,timeslot.endTime)' " ui-validate-watch=" 'timeslot.endTime' " name="startTime" type="time" ng-model="timeslot.startTime" class="timeInput text-input"/></ons-col><ons-col><input ui-validate=" 'validate(timeslot.startTime,$value)' " ui-validate-watch=" 'timeslot.endTime' " name="startTime" type="time" ng-model="timeslot.endTime" class="timeInput text-input"/></ons-col></ons-row><section style="margin-top: 20px; padding: 8px" class="center"></section>Start- und Endzeit festlegen<ons-row align="center"><ons-col><ons-button ng-click="addTimeSlots() &amp;&amp; ons.navigator.popPage();">Hinzufügen</ons-button></ons-col></ons-row></ons-page><!-- obiger versuch 1 klappt nur, wenn die untere ons-row vorhanden bleibt, ansonsten wird wieder nichts gebunden--><!-- unterer versuch 2 klappt nicht, zudem wird Start- und Endzeit festlegen nicht angezeigt aus unerklärlichen Gründen--><!--section.center(style="margin-top: 20px; padding: 8px" )| Start- und Endzeit festlegen
+ons-row(align="center")
+  ons-col
+    input.timeInput(ui-validate=" 'validate($value,request.endTime)' ", ui-validate-watch=" 'request.endTime' ", name="startTime", type="time", class="text-input", ng-model="request.startTime")
+  ons-col
+    input.timeInput(ui-validate=" 'validate(request.startTime,$value)' ", ui-validate-watch=" 'request.endTime' ", name="startTime", type="time", class="text-input", ng-model="request.endTime", style="width: 100%")
+    --><!-- versuch 3 mit div funktioniert so wie er hier steht nicht, es könnte sein, dass durch ein weiteren div das Problem behoben werden könnte.center(ng-repeat="timeslot in timeslots")
+  .left
+    input.timeInput(shared-validate="timeslot.endTime", name="startTime", type="time", class="text-input", ng-model="timeslot.startTime")
+  .left
+      input.timeInput(shared-validate="timeslot.startTime", name="endTime", type="time", class="text-input", ng-model="timeslot.endTime", style="width: 100%")
+      --><!-- versuch 4:--><!-- wenn man nicht ui-validate nutzen möchte, müsste man folgendes noch anpasseninput.timeInput(shared-validate="request.endTime", name="startTime", type="time", class="text-input", ng-model="request.startTime")
+input.timeInput(shared-validate="request.startTime", name="endTime", type="time", class="text-input", ng-model="request.endTime", style="width: 100%")
+
+die Direktive shared-validate funktioniert nur, wenn die zeit schon richtig eingestellt ist. Schwierig wird es erst, wenn erst die Startzeit auf bspw. 14h
+und dann die Endzeit korrigiert wird. Die zweite Änderung wird nicht wahrgenommen.-->

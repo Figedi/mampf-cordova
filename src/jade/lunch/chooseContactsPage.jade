@@ -3,10 +3,15 @@ ons-page.center(ng-controller="ChooseContactCtrl")
     .center Kontakte auswählen
 
   section(style="padding: 8px" )
-    div
+    //div
       | Ausgewählte Kontakte {{(contactsForChoose | filter:{selected: true}).length}}
-      ons-list
-        ons-list-item(ng-repeat="contact in contactsForChoose", ng-class="{ selected: contact.selected }", ng-click="toggleContact(contact)") {{contact.displayName}}
+    ons-list
+      ons-list-item(ng-repeat="contact in contactsForChoose", ng-class="{ selected: contact.selected }", ng-click="toggleContact(contact)") {{contact.displayName}}
+      ons-list-item(ng-hide="hideNoContactElement")
+        .leftIconItem
+          ons-icon(icon="frown-o")
+        .leftIconItem
+          | Keine Kontakte verfügbar
 
   section(style="padding: 8px")
     ons-button(ng-click="ons.navigator.popPage();")

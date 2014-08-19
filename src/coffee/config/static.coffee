@@ -28,6 +28,20 @@ conf =
       longitude: -8
     }
   ]
+
+  dummyTimeslots: [
+    {
+      id: 0
+      startTime: "12:00",
+      endTime: "14:00"
+    },
+    {
+      id: 1
+      startTime: "16:00",
+      endTime: "18:00"
+    }
+  ]
+
   dummyUser:
     telephone: "01522905094913"
     telephoneHash: "d949dd7b976c60f70f6492ee673d6768"
