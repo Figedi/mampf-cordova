@@ -29,16 +29,10 @@ conf =
     }
   ]
 
-  dummyTimeslots: [
+  defaultTimeslots: [
     {
-      id: 0
       startTime: "12:00",
       endTime: "14:00"
-    },
-    {
-      id: 1
-      startTime: "16:00",
-      endTime: "18:00"
     }
   ]
 

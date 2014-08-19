@@ -1,23 +1,30 @@
 ons-page.center(ng-controller="TimeslotCtrl")
   ons-toolbar
-    .center Zeiten auswählen {{timeslots.length}}
+    .center Zeiten auswählen
+    .right
+        ons-toolbar-button(ng-click="addTimeSlot()")
+          ons-icon(icon="plus")
 
   label.form-label Start- und Endzeit festlegen
-  ons-row.bordered(align="center",ng-repeat="timeslot in timeslots")
-    ons-col
-      input.timeInput(ui-validate=" 'validate($value,timeslot.endTime)' ", ui-validate-watch=" 'timeslot.endTime' ", name="startTime", type="time",
+  ons-row.bordered(align="center",ng-repeat="timeslot in timeslots track by $index")
+    ons-col(width="45%")
+      input.timeInput(ui-validate=" 'validateTime($value,timeslot.endTime)' ", ui-validate-watch=" 'timeslot.endTime' ", name="startTime", type="time",
         class="text-input", ng-model="timeslot.startTime")
-    ons-col
-      input.timeInput(ui-validate=" 'validate(timeslot.startTime,$value)' ", ui-validate-watch=" 'timeslot.endTime' ", name="startTime", type="time",
+    ons-col(width="45%")
+      input.timeInput(ui-validate=" 'validateTime(timeslot.startTime,$value)' ", ui-validate-watch=" 'timeslot.endTime' ", name="startTime", type="time",
         class="text-input", ng-model="timeslot.endTime")
+    ons-col(width="5%")
+      ons-button(ng-click="removeTimeSlot($index)",modifier="light")
+          ons-icon(icon="minus", style="color: red;")
 
   section.center(style="margin-top: 20px; padding: 8px" )
   | Start- und Endzeit festlegen
   ons-row(align="center")
     ons-col
-      ons-button(ng-click="addTimeSlots() && ons.navigator.popPage();") Hinzufügen
+      ons-button(ng-click="saveTimeSlots() && ons.navigator.popPage();") Hinzufügen
 
 // obiger versuch 1 klappt nur, wenn die untere ons-row vorhanden bleibt, ansonsten wird wieder nichts gebunden
+// die row muss außerdem einen border besitzen, da es ansonsten auch nicht funktioniert
 
 // unterer versuch 2 klappt nicht, zudem wird Start- und Endzeit festlegen nicht angezeigt aus unerklärlichen Gründen
 //section.center(style="margin-top: 20px; padding: 8px" )

@@ -1,29 +1,32 @@
 timeslotsctrl = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, storage, sharedData) ->
 
-  storage.bind($scope, 'timeslots', { defaultValue: config.dummyTimeslots })
+  storage.bind($scope, 'timeslots', { defaultValue: config.defaultTimeslots })
 
-  $scope.foo = "test"
-
-  $scope.lastId = $scope.timeslots.length-1;
-
-  $scope.request =
-    startTime: "12:00"
-    endTime: "14:00"
-
-  $scope.validate = (value1,value2) ->
+  $scope.validateTime = (value1,value2) ->
     value1 <= value2
 
-  $scope.getCurrentDateTime = ->
-    $scope.request.startTime = new Date().toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})
-    plus2Hours = new Date().getTime() + 1000 * 60 * 60 * 2
-    $scope.request.endTime = (new Date(plus2Hours)).toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})
+  $scope.setDateTime = (id)->
+    date = new Date()
+    $scope.timeslots[id].startTime = date.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})
+    plus2Hours = date.getTime() + 1000 * 60 * 60 * 2
+    $scope.timeslots[id].endTime = (new Date(plus2Hours)).toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})
 
   # set current date
-  $scope.getCurrentDateTime()
+  $scope.setDateTime(0)
 
-  $scope.addTimeSlots = () ->
-    console.log "todo"
-    true
+  $scope.addTimeSlot = () ->
+    nextID = $scope.timeslots.length
+    $scope.timeslots.push(
+        startTime: ""
+        endTime: ""
+      )
+    $scope.setDateTime(nextID)
+
+  $scope.removeTimeSlot = ($index) ->
+    $scope.timeslots.splice($index,1)
+
+  $scope.saveTimeSlots = () ->
+    sharedData.timeslots = $scope.timeslots
 ]
 
 module.exports = timeslotsctrl
