@@ -13,13 +13,19 @@ ons-page.center(ng-controller="LunchResponseCtrl")
   section(style="padding: 8px")
     ons-row(style="padding: 8px")
       ons-button(ng-click="ons.navigator.pushPage('partials/chooseContactsPage.html', { animation : 'slide' } )" )
-        | Kontakte anzeigen
-        ons-icon(icon="group")
+        .leftIconButton
+          ons-icon(icon="group")
+        .leftIconButton
+          | Kontakte anzeigen
     ons-row(style="padding: 8px")
       ons-button(ng-click="ons.navigator.pushPage('partials/profile.html', { animation : 'slide' } )" )
-        | Profil anzeigen
-        ons-icon(icon="user")
+        .leftIconButton
+          ons-icon(icon="user")
+        .leftIconButton
+          | Profil anzeigen
     ons-row(style="padding: 8px")
       ons-button(ng-click="ons.navigator.pushPage('partials/lunch.html', { animation : 'slide' } )" )
-        | Neue Anfrage
-        ons-icon(icon="cutlery")
+        .leftIconButton
+          ons-icon(icon="cutlery")
+        .leftIconButton
+          | Neue Anfrage

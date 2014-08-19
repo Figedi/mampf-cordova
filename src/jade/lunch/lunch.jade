@@ -27,5 +27,7 @@ ons-navigator(ng-controller="LunchRequestCtrl")
       ons-row(style="padding: 8px;margin-top: 16px")
         ons-col(align="center")
           ons-button(ng-click="doRequest()", disabled="{{getCount() == 0 || getSelectedLocationName() == null}}" )
-            | Anfrage verschicken
-            ons-icon(icon="cutlery")
+            .leftIconButton
+              ons-icon(icon="cutlery")
+            .leftIconButton
+              | Anfrage verschicken

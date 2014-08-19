@@ -11,15 +11,21 @@ ons-page(class="center")
       ons-row(align="center")
         ons-col
           ons-button(ng-click="ons.navigator.pushPage('partials/lunch/lunch.html', { animation : 'slide' } )" )
-            ons-icon(icon="cutlery")
-            | Neue Anfrage
+            .leftIconButton
+              ons-icon(icon="cutlery")
+            .leftIconButton
+              | Neue Anfrage
       ons-row(align="center")
         ons-col
           ons-button(ng-click="ons.navigator.pushPage('partials/profile/profile.html', { animation : 'slide' } )" )
-            ons-icon(icon="user")
-            | Profil anzeigen
+            .leftIconButton
+              ons-icon(icon="user")
+            .leftIconButton
+              | Profil anzeigen
       ons-row(align="center")
         ons-col
           ons-button(ng-click="ons.navigator.pushPage('partials/contacts/contacts.html', { animation : 'slide' } )" )
-            ons-icon(icon="group")
-            | Kontakte anzeigen
+            .leftIconButton
+              ons-icon(icon="group")
+            .leftIconButton
+              | Kontakte anzeigen
