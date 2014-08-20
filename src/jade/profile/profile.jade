@@ -6,7 +6,8 @@ ons-navigator(ng-controller="ProfileCtrl")
       form(name="profileForm", novalidate)
         label.form-label Handynummer
         br
-        input(class="text-input", ng-class="{ 'form-error': profileForm.telephone.$invalid }", name="telephone", ng-model="user.telephone", ng-required="true", ng-pattern="/\s*\\+49[0-9 ]{7,}/", placeholder="Bitte ihre eigene Handynummer eingeben", style="display: block; width: 100%")
+        input(class="text-input", ng-class="{ 'form-error': profileForm.telephone.$invalid }", name="telephone", ng-model="user.telephone",
+          ng-required="true", ng-pattern="/\s*\\+49[0-9 ]{7,}/", placeholder="Bitte ihre eigene Handynummer eingeben", style="display: block; width: 100%")
         span.form-error-description(ng-show="profileForm.telephone.$invalid") Telefonnummer muss im Format +49 1234 12345 (Leerzeichen optional) sein
     .profileButtons
       ons-row(style="padding: 8px")
@@ -14,7 +15,7 @@ ons-navigator(ng-controller="ProfileCtrl")
           ons-button(ng-click="ons.navigator.pushPage('partials/profile/showLocationsPage.html', { animation : 'slide' } )")
             .leftIconButton
               ons-icon(icon="map-marker")
-            .leftIconButton
+            .center
               | Orte anzeigen
 
       ons-row(style="padding: 8px")
@@ -22,5 +23,5 @@ ons-navigator(ng-controller="ProfileCtrl")
           ons-button(ng-click="ons.navigator.pushPage('partials/profile/addNewLocationPage.html', { animation : 'slide' } )")
             .leftIconButton
               ons-icon(icon="plus")
-            .leftIconButton
+            .center
               | Ort hinzufügen

@@ -19,13 +19,13 @@ ons-list-item.selected {
 }
 
 .profileButtons button {
-  width: 50%;
+  width: 40%;
   text-align: center;
   margin-top: 16px
 }
 
 .greatButtons button {
-  width: 60%;
+  width: 50%;
   text-align: center;
   margin-top: 16px
 }
@@ -58,6 +58,7 @@ input.ng-invalid {
 
 .leftIconButton {
   float: left;
+  text-align: center;
 
   ons-icon {
     margin-top: 25%;

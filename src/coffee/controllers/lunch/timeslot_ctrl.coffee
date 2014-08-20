@@ -25,8 +25,22 @@ timeslotsctrl = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, s
   $scope.removeTimeSlot = ($index) ->
     $scope.timeslots.splice($index,1)
 
+  _setSharedTimeslotData = ->
+    tmpDate = new Date()
+    dateString = "#{tmpDate.getFullYear()}-#{tmpDate.getMonth()+1}-#{tmpDate.getDate()}"
+    isoTimeSlot = angular.copy($scope.timeslots)
+    isoTimeSlot = isoTimeSlot.map ( (timeslot) ->
+        {
+          startTime: new Date(Date.parse("#{dateString}, #{timeslot.startTime}")).toISOString()
+          endTime: new Date(Date.parse("#{dateString}, #{timeslot.endTime}")).toISOString()
+        }
+      )
+    sharedData.timeslots = isoTimeSlot
+
+  _setSharedTimeslotData()
+
   $scope.saveTimeSlots = () ->
-    sharedData.timeslots = $scope.timeslots
+    _setSharedTimeslotData()
 ]
 
 module.exports = timeslotsctrl

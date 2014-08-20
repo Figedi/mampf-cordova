@@ -26,9 +26,9 @@ addLocation = ['$scope', 'config', 'storage', 'sharedData', 'geoLocation', ($sco
       selected: false
       latitude: lat
       longitude: lng
-    $scope.locations.push(location)
     #same as in addContact, when sharedData has been touched, add new location
     sharedData.locations.push(location) if sharedData.locations.length
+    $scope.locations.push(location)
 
 
   $scope.mapClick = ($event, $params) ->

@@ -14,21 +14,18 @@ lunchRequest = ['$scope', 'sharedData', 'storage', 'config', 'constants', 'geoLo
 
   # data binding doesnt seem to work without a request data model
 
-  # default value, will be overidden anyways
-  $scope.request =
-    startTime: "12:00"
-    endTime: "14:00"
-
-  ###$scope.getCurrentDateTime = ->
-    $scope.request.startTime = new Date().toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})
-    plus2Hours = new Date().getTime() + 1000 * 60 * 60 * 2
-    $scope.request.endTime = (new Date(plus2Hours)).toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})
-
-  # set current date
-  $scope.getCurrentDateTime()###
-
   $scope.getCount = ->
     sharedData.contacts.filter((contact) -> contact.selected).length
+
+  $scope.requestNotReady = ->
+    $scope.getCount() == 0 || !$scope.isUserPropertiesDefined() ||
+      $scope.getSelectedLocationName() == null || typeof sharedData.timeslots == 'undefined'
+
+
+  $scope.isUserPropertiesDefined = ->
+    typeof $scope.user != 'undefined' &&
+      typeof $scope.user.telephone != 'undefined' &&
+        typeof $scope.user.telephoneHash != 'undefined'
 
   $scope.getSelectedLocationName = ->
     [type, location] = _getLocationType()
@@ -44,10 +41,10 @@ lunchRequest = ['$scope', 'sharedData', 'storage', 'config', 'constants', 'geoLo
 
   $scope.doRequest = ->
     # first format dates according to API specification
-    tmpDate = new Date()
-    dateString = "#{tmpDate.getFullYear()}-#{tmpDate.getMonth()+1}-#{tmpDate.getDate()}"
-    startTime = new Date(Date.parse("#{dateString}, #{$scope.request.startTime}")).toISOString()
-    endTime = new Date(Date.parse("#{dateString}, #{$scope.request.endTime}")).toISOString()
+    #tmpDate = new Date()
+    #dateString = "#{tmpDate.getFullYear()}-#{tmpDate.getMonth()+1}-#{tmpDate.getDate()}"
+    #startTime = new Date(Date.parse("#{dateString}, #{$scope.request.startTime}")).toISOString()
+    #endTime = new Date(Date.parse("#{dateString}, #{$scope.request.endTime}")).toISOString()
     # second, fetch invitees' hashes
     inviteeHashes = sharedData.contacts.filter((contact) -> contact.selected).map((contact) -> contact.telephoneHash)
     # third, fetch the own users md5
@@ -60,12 +57,12 @@ lunchRequest = ['$scope', 'sharedData', 'storage', 'config', 'constants', 'geoLo
       identity: telephoneHash
       invitees: inviteeHashes
       currentPosition: coords
-      timeSlots: [ #for testing reasons only one allowed
-        {
-          startTime: startTime
-          endTime: endTime
-        }
-      ]
+      timeSlots: sharedData.timeslots # [ #for testing reasons only one allowed
+       # {
+       #   startTime: startTime
+       #   endTime: endTime
+       # }
+      #]
       console.log "request", request
       server.create({data: request }).then (response) ->
         console.log "we have a response", response
