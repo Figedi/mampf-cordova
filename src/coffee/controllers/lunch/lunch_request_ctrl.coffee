@@ -63,7 +63,7 @@ lunchRequest = ['$scope', 'sharedData', 'storage', 'config', 'constants', 'geoLo
        #   endTime: endTime
        # }
       #]
-      console.log "request", request
+      console.log "request", JSON.stringify(request)
       server.create({data: request }).then (response) ->
         console.log "we have a response", response
     , (error) ->

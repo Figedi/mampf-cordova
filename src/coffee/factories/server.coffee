@@ -1,11 +1,5 @@
 srv = ['$http', 'config', ($http, config) ->
 
-  callbackDone = ->
-    console.log "aha done"
-
-  callbackError = ->
-    console.log "aha error"
-
   baseHTTP = (opts) ->
     $http({
       method: opts.method
@@ -15,12 +9,9 @@ srv = ['$http', 'config', ($http, config) ->
     create: (opts) ->
       # i have no idea what im doing here
       baseHTTP(angular.extend(opts, {
-        success: callbackDone
-        error: callbackError
-        method: 'POST'
-        dataType: 'json'
-        data: angular.fromJson(opts.data)
-        contentType: 'application/json; charset=utf-8'
+        method: "POST"
+        data: JSON.stringify(opts.data, null, "  ")
+        headers: {"Content-Type": "application/json"}
       }))
     update: (opts) ->
       baseHTTP(angular.extend(opts, { method: 'PUT' }))
