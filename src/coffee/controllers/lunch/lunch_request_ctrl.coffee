@@ -67,7 +67,7 @@ lunchRequest = ['$scope', 'sharedData', 'storage', 'config', 'constants', 'geoLo
       server.create({data: request }).then (response) ->
         console.log "we have a response", response
     , (error) ->
-      console.log "oops error while retrieving coordinates"
+      console.log "oops error while retrieving coordinates", error
 
   # determines current selected type, can be either location or GPS
   _getLocationType = ->

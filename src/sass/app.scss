@@ -65,6 +65,31 @@ input.ng-invalid {
   }
 }
 
+.removeTimeSlotButton {
+  button {
+    border: 0px;
+    border-color: #ffffff;
+  }
+
+  ons-icon {
+    color: red;
+  }
+}
+
+.leftIconRemoveItem {
+  float: left;
+
+  button {
+    border: 0px;
+    border-color: #ffffff;
+  }
+
+  ons-icon {
+    color: red;
+    margin-top: 28%;
+  }
+}
+
 .leftIconItem {
   float: left;
 

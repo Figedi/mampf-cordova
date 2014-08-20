@@ -14,8 +14,8 @@ ons-page.center(ng-controller="TimeslotCtrl")
       input.timeInput(ui-validate=" 'validateTime(timeslot.startTime,$value)' ", ui-validate-watch=" 'timeslot.endTime' ", name="startTime", type="time",
         class="text-input", ng-model="timeslot.endTime")
     ons-col(width="5%")
-      ons-button(ng-click="removeTimeSlot($index)",modifier="light")
-          ons-icon(icon="minus", style="color: red;")
+      ons-button.removeTimeSlotButton(ng-click="removeTimeSlot($index)",modifier="light")
+        ons-icon(icon="times")
 
   section.center(style="margin-top: 20px; padding: 8px" )
   | Start- und Endzeit festlegen

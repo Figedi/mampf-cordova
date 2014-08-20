@@ -1,5 +1,5 @@
 conf =
-  server: "http://141.83.68.32/mampf"
+  server: "http://141.83.68.32/mampf/"
   dummyContacts: [
     {
       displayName: "dummy"

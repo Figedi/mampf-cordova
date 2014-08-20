@@ -44,7 +44,6 @@ directives =
 
 app.directive directives
 
-
 # listen to onGoogleReady callback since we are loading the Maps API asynchronously
 # after that we can bootstrap the application for the body element
 window.onGoogleReady = ->
