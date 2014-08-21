@@ -1,5 +1,7 @@
 lunchResponse = ['$http', '$scope', 'sharedData', 'storage', 'config', 'constants', 'geoLocation', '$q', '$rootScope', ($http, $scope, sharedData, storage, config, constants, geoLocation, $q, $rootScope) ->
 
+  $scope.responseData = angular.copy(sharedData.responseData)
+
   $scope.setTitle = ->
     switch sharedData.responseErrorId
       when constants.ERROR_BY_RETRIEVING_POSITION
@@ -11,16 +13,22 @@ lunchResponse = ['$http', '$scope', 'sharedData', 'storage', 'config', 'constant
       when constants.NO_ERROR
         "Erfolgreiche Suche"
 
-  $scope.getContacts = ->
-    selectedContacts = []
-    telephoneHashes = []
-    telephoneHashes.push(sharedData.responseData.subjects)
+  $scope.setContacts = ->
+    $scope.selectedContacts = []
 
-    console.log telephoneHashes
     for contact in sharedData.contacts.filter( (contact) -> contact.selected )
-      console.log contact
-      selectedContacts.push(contact) if contact.telephoneHash in telephoneHashes
-    console.log selectedContacts
+      $scope.selectedContacts.push(contact) if contact.telephoneHash in $scope.responseData.subjects
+
+  # set selected contacts
+  $scope.setContacts()
+
+  $scope.getEnd = ->
+    date = new Date(sharedData.responseData.timeslot.endTime)
+    date.toLocaleTimeString('de', {hour: '2-digit', minute:'2-digit'})
+
+  $scope.getStart = ->
+    date = new Date(sharedData.responseData.timeslot.startTime)
+    date.toLocaleTimeString('de', {hour: '2-digit', minute:'2-digit'})
 ]
 
 module.exports = lunchResponse

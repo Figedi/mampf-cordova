@@ -4,12 +4,15 @@ ons-page.center(ng-controller="LunchResponseCtrl")
 
   section(style="padding: 8px")
     div
-      | dummy umgebung für Google Maps Location
+      | Uhrzeit
+    ons-row(style="padding: 8px")
+      ons-col(align="center") Startpunkt: {{getStart()}}
+      ons-col(align="center") Endpunkt: {{getEnd()}}
 
   section(style="padding: 8px")
-    div
-      ons-button(ng-click="getContacts()")
-      | Uhrzeit
+      ons-list
+        ons-list-header Ausgewählte Kontakte
+        ons-list-item(ng-repeat="contact in selectedContacts") {{contact.displayName}}
 
   section.center(style="padding: 8px")
   .greatButtons
