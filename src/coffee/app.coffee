@@ -44,6 +44,12 @@ directives =
 
 app.directive directives
 
+#
+app.config ["$httpProvider", ($httpProvider) ->
+  $httpProvider.defaults.useXDomain = true
+  delete $httpProvider.defaults.headers.common["X-Requested-With"]
+]
+
 # listen to onGoogleReady callback since we are loading the Maps API asynchronously
 # after that we can bootstrap the application for the body element
 window.onGoogleReady = ->

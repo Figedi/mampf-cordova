@@ -1,17 +1,19 @@
 srv = ['$http', 'config', ($http, config) ->
 
   baseHTTP = (opts) ->
-    $http({
-      method: opts.method
-      url: "#{config.server}"
+    $http.post("#{config.server}",{
+      withCredentials: true
       data: opts.data})
   {
     create: (opts) ->
       # i have no idea what im doing here
       baseHTTP(angular.extend(opts, {
-        method: "POST"
-        data: JSON.stringify(opts.data, null, "  ")
-        headers: {"Content-Type": "application/json"}
+        data: opts.data
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
+        }
       }))
     update: (opts) ->
       baseHTTP(angular.extend(opts, { method: 'PUT' }))
