@@ -8,7 +8,7 @@
  *
  * @return {void} No explicit returnvalue needed
 ###
-lunchRequest = ['$scope', 'sharedData', 'storage', 'config', 'constants', 'geoLocation', 'server', '$q', '$interval', '$rootScope', ($scope, sharedData, storage, config, constants, geoLocation, server, $q, $interval, $rootScope) ->
+lunchRequest = ['$http', '$scope', 'sharedData', 'storage', 'config', 'constants', 'geoLocation', '$q', '$rootScope', ($http, $scope, sharedData, storage, config, constants, geoLocation, $q, $rootScope) ->
 
   storage.bind($scope, 'user')
 
@@ -39,38 +39,50 @@ lunchRequest = ['$scope', 'sharedData', 'storage', 'config', 'constants', 'geoLo
       else
         null
 
+  pushPage = (pageSuffix) ->
+    pagePath = 'partials/lunch/' + pageSuffix
+    sharedData.location = location
+    ons.navigator.pushPage(pagePath, { animation: "slide" })
+
+  $scope.sendRequest = (inputdata) ->
+    $http({
+      method: 'POST',
+      url:"#{config.server}",
+      data: JSON.stringify(inputdata, null, '  '),
+      headers: {'Content-type': 'application/json'}
+    })
+
   $scope.doRequest = ->
-    # first format dates according to API specification
-    #tmpDate = new Date()
-    #dateString = "#{tmpDate.getFullYear()}-#{tmpDate.getMonth()+1}-#{tmpDate.getDate()}"
-    #startTime = new Date(Date.parse("#{dateString}, #{$scope.request.startTime}")).toISOString()
-    #endTime = new Date(Date.parse("#{dateString}, #{$scope.request.endTime}")).toISOString()
-    # second, fetch invitees' hashes
+    # first, fetch invitees' hashes
     inviteeHashes = sharedData.contacts.filter((contact) -> contact.selected).map((contact) -> contact.telephoneHash)
-    # third, fetch the own users md5
+    # second, fetch the own users md5
     telephoneHash = $scope.user.telephoneHash
-
-    # either fetch the current position or use predefined destination
+    # third either fetch the current position or use predefined destination
     _getLocation().then (coords) ->
-
       request =
-      identity: telephoneHash
-      invitees: inviteeHashes
-      currentPosition: coords
-      timeSlots: sharedData.timeslots # [ #for testing reasons only one allowed
-       # {
-       #   startTime: startTime
-       #   endTime: endTime
-       # }
-      #]
-      server.create({data: JSON.stringify(request, null, '  ')})
+        identity: telephoneHash
+        invitees: inviteeHashes
+        currentPosition: coords
+        timeslots: sharedData.timeslots
+      $scope.sendRequest(request)
         .then (response) ->
-          console.log "we have a response", response
+          if response.data.subjects.length == 0
+            sharedData.responseErrorId = constants.ERROR_BY_NO_MATCH
+            pushPage("showResultsFailurePage.html")
+          else
+            sharedData.responseData = angular.copy(response.data)
+            sharedData.responseErrorId = constants.NO_ERROR
+            pushPage("showResultsSuccessPage.html")
+            console.log response
         , (error) ->
-          console.log "fehler", error
-
+          sharedData.responseErrorId = constants.ERROR_BY_NO_SERVER_RESPONSE
+          sharedData.responseError = angular.copy(error)
+          pushPage("showResultsFailurePage.html")
     , (error) ->
-      console.log "oops error while retrieving coordinates", coords
+      sharedData.responseErrorId = constants.ERROR_BY_RETRIEVING_POSITION
+      sharedData.responseError = angular.copy(error)
+      pushPage("showResultsFailurePage.html")
+
 
   # determines current selected type, can be either location or GPS
   _getLocationType = ->

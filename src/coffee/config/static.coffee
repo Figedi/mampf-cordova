@@ -5,13 +5,13 @@ conf =
       displayName: "dummy"
       selected: false
       telephone: "+4917629322211"
-      telephoneHash: "f828ffdfcd8b508cd0a9d16771a55745"
+      telephoneHash: "490a707488746155f9fe9e4074e54eff"
     }
     {
       displayName: "dummy2"
       selected: false
       telephone: "+4917629322212"
-      telephoneHash: "2180878ef6bb945692cd66a0c053faf0"
+      telephoneHash: "1a88fc410f2cd3800e50e2227884f1a2"
     }
   ]
   dummyLocations: [

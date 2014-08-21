@@ -8,24 +8,29 @@ ons-page.center(ng-controller="LunchResponseCtrl")
 
   section(style="padding: 8px")
     div
+      ons-button(ng-click="getContacts()")
       | Uhrzeit
 
-  section(style="padding: 8px")
+  section.center(style="padding: 8px")
+  .greatButtons
     ons-row(style="padding: 8px")
-      ons-button(ng-click="ons.navigator.pushPage('partials/chooseContactsPage.html', { animation : 'slide' } )" )
-        .leftIconButton
-          ons-icon(icon="group")
-        .center
-          | Kontakte anzeigen
+      ons-col(align="center")
+        ons-button(ng-click="ons.navigator.pushPage('partials/chooseContactsPage.html', { animation : 'slide' } )" )
+          .leftIconButton
+            ons-icon(icon="group")
+          .center
+            | Kontakte anzeigen
     ons-row(style="padding: 8px")
-      ons-button(ng-click="ons.navigator.pushPage('partials/profile.html', { animation : 'slide' } )" )
-        .leftIconButton
-          ons-icon(icon="user")
-        .center
-          | Profil anzeigen
+      ons-col(align="center")
+        ons-button(ng-click="ons.navigator.pushPage('partials/profile.html', { animation : 'slide' } )" )
+          .leftIconButton
+            ons-icon(icon="user")
+          .center
+            | Profil anzeigen
     ons-row(style="padding: 8px")
-      ons-button(ng-click="ons.navigator.pushPage('partials/lunch.html', { animation : 'slide' } )" )
-        .leftIconButton
-          ons-icon(icon="cutlery")
-        .center
-          | Neue Anfrage
+      ons-col(align="center")
+        ons-button(ng-click="ons.navigator.pushPage('partials/lunch.html', { animation : 'slide' } )" )
+          .leftIconButton
+            ons-icon(icon="cutlery")
+          .center
+            | Neue Anfrage

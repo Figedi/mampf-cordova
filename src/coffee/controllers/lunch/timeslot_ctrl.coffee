@@ -7,9 +7,10 @@ timeslotsctrl = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, s
 
   $scope.setDateTime = (id)->
     date = new Date()
-    $scope.timeslots[id].startTime = date.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})
+    # anstelle von toLocaleTimeString(navigator.language, lieber de nutzen für deutsche Ausgabe
+    $scope.timeslots[id].startTime = date.toLocaleTimeString('de', {hour: '2-digit', minute:'2-digit'})
     plus2Hours = date.getTime() + 1000 * 60 * 60 * 2
-    $scope.timeslots[id].endTime = (new Date(plus2Hours)).toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})
+    $scope.timeslots[id].endTime = (new Date(plus2Hours)).toLocaleTimeString('de', {hour: '2-digit', minute:'2-digit'})
 
   # set current date
   $scope.setDateTime(0)
