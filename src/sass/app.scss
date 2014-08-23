@@ -72,6 +72,15 @@ input.ng-invalid {
   border: 1px solid red;
 }
 
+.settingsMenu {
+  float: left;
+  width: 40%;
+
+  button {
+    border: 0px solid #fff;
+  }
+}
+
 .leftIconButton {
   float: left;
   text-align: center;
