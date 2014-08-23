@@ -4,7 +4,12 @@ ons-page.center(ng-controller="ShowLocationsCtrl")
 
   section(style="padding: 8px" )
     div
-      ons-list
+      ons-row.listRow(ng-repeat="location in locations")
+        ons-col(ng-class="{testSwipe: showActions}",ng-swipe-right="showActions=true",ng-swipe-left="showActions=false")
+          {{location.locationName}}
+      //ons-list
+        ons-list-item(class="tappable", modifier="chevron",ng-swipe-right="showActions=true",ng-swipe-left="showActions=false", ng-repeat="location in locations", ng-class="{testSwipe: showActions}")
+          {{location.locationName}}
         ons-list-item(class="tappable", modifier="chevron", ng-repeat="location in locations",ng-click="pushPage(location)")
           span {{location.locationName}}
   section(style="padding: 8px")

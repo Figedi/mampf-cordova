@@ -13,6 +13,22 @@
   margin: 5% auto 0 auto;
 }
 
+.listRow {
+  ons-col {
+    text-align: left;
+    margin-top: 8px;
+  }
+
+  border-top: 1px solid #ddd;
+  font-size: 1.2em;
+  margin-top: 16px;
+  margin-bottom: 16px
+}
+
+.testSwipe {
+  color: red;
+}
+
 ons-list-item.selected {
   background-color: #1284ff;
   color: #fff;

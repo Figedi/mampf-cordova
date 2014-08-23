@@ -7,6 +7,8 @@
 showLocations = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, storage, sharedData) ->
   storage.bind($scope, 'locations', { defaultValue: config.dummyLocations })
 
+  $scope.showActions = false;
+
   $scope.pushPage = (location) ->
 
     sharedData.location = location
