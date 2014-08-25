@@ -1,13 +1,14 @@
 srv = ['$http', 'config', ($http, config) ->
 
-  sendRequest = (inputdata) ->
-    $http({
-      method: 'POST',
-      url:"#{config.server}",
-      data: JSON.stringify(inputdata, null, '  '),
-      headers: {'Content-type': 'application/json'}
-    })
-
+  {
+    send: (data) ->
+      # i have no idea what im doing here
+      $http({
+        method: 'POST'
+        url: "#{config.server}"
+        data: data
+      })
+  }
 ]
 
 module.exports = srv
