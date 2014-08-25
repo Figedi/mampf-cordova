@@ -16,6 +16,8 @@ lunchResponse = ['$http', '$scope', 'sharedData', 'storage', 'config', 'constant
   $scope.setContacts = ->
     $scope.selectedContacts = []
 
+    return unless sharedData.responseErrorId == constants.NO_ERROR
+
     for contact in sharedData.contacts.filter( (contact) -> contact.selected )
       $scope.selectedContacts.push(contact) if contact.telephoneHash in $scope.responseData.subjects
 
