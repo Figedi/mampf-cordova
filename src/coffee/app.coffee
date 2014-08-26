@@ -1,4 +1,4 @@
-app = angular.module 'mampfApp', ['onsen.directives', 'ngTouch', 'ngMd5', 'ui.map', 'angularLocalStorage', 'ui.validate']
+app = angular.module 'mampfApp', ['onsen.directives', 'ngMd5', 'ui.map', 'angularLocalStorage', 'ui.validate']
 #app config/statics
 constants =
   config : require('./config/static.coffee')

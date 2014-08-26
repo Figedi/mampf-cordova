@@ -28,10 +28,8 @@ contactsList = ['$scope', 'contactChooser', 'sharedData', 'storage', 'config', '
 
   $scope.contactAdd = ->
     contactChooser.get().then (contact) ->
-      #contact contains always ONE contact
-      console.log "contact", contact, contact.phoneNumbers.value
-      #contact.phoneNumbers
-      if contact.phoneNumbers && (t = contact.phoneNumbers[1].value).trim()
+      #contactchoose returns always ONE contact
+      if contact.phoneNumbers.length && (t = contact.phoneNumbers[1].value).trim()
         if not t.test(/^\+49\s*/) && t.test(/^0\s*/)
           t = t.replace(/0/, "+49") # since js's replace just replaces the first occurence of "0"
           tHash = md5.createHash(""+t)
@@ -40,7 +38,6 @@ contactsList = ['$scope', 'contactChooser', 'sharedData', 'storage', 'config', '
         telephone: t
         telephoneHash: tHash
         selected: false
-      #console.log "contact after", contact
       if $scope.contacts.filter((contact) -> contact.telephone == t).length == 0
         $scope.contacts.push(contact)
       #if sharedData has been used already, push new contact in it

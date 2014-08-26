@@ -22,10 +22,7 @@ lunchRequest = ['$http', '$scope', 'sharedData', 'storage', 'config', 'constants
       $scope.getSelectedLocationName() == null || typeof sharedData.timeslots == 'undefined'
 
 
-  $scope.isUserPropertiesDefined = ->
-    typeof $scope.user != 'undefined' &&
-      typeof $scope.user.telephone != 'undefined' &&
-        typeof $scope.user.telephoneHash != 'undefined'
+  $scope.isUserPropertiesDefined = -> $scope.user?.telephone? && $scope.user.telephoneHash?
 
   $scope.getSelectedLocationName = ->
     [type, location] = _getLocationType()
@@ -45,12 +42,11 @@ lunchRequest = ['$http', '$scope', 'sharedData', 'storage', 'config', 'constants
     ons.navigator.pushPage(pagePath, { animation: "slide" })
 
   $scope.sendRequest = (inputdata) ->
-    $http({
-      method: 'POST',
-      url:"#{config.server}",
-      data: JSON.stringify(inputdata, null, '  '),
-      headers: {'Content-type': 'application/json'}
-    })
+    console.log "it works request", inputdata
+    $http
+      method: 'POST'
+      url:"#{config.server}"
+      data: inputdata
 
   $scope.doRequest = ->
     # first, fetch invitees' hashes
@@ -58,26 +54,27 @@ lunchRequest = ['$http', '$scope', 'sharedData', 'storage', 'config', 'constants
     # second, fetch the own users md5
     telephoneHash = $scope.user.telephoneHash
     # third either fetch the current position or use predefined destination
+    console.log "do request before"
     _getLocation().then (coords) ->
       request =
         identity: telephoneHash
         invitees: inviteeHashes
         currentPosition: coords
         timeslots: sharedData.timeslots
-      $scope.sendRequest(request)
-        .then (response) ->
-          if response.data.subjects.length == 0
-            sharedData.responseErrorId = constants.ERROR_BY_NO_MATCH
-            pushPage("showResultsFailurePage.html")
-          else
+      console.log "herrror", request
+      $scope.sendRequest(request).then (response) ->
+          console.log "response", response
+          if response.data.subjects.length #not null, so we have a valid match
             sharedData.responseData = angular.copy(response.data)
             sharedData.responseErrorId = constants.NO_ERROR
             pushPage("showResultsSuccessPage.html")
-            console.log response
-        , (error) ->
-          sharedData.responseErrorId = constants.ERROR_BY_NO_SERVER_RESPONSE
-          sharedData.responseError = angular.copy(error)
-          pushPage("showResultsFailurePage.html")
+          else #
+            sharedData.responseErrorId = constants.ERROR_BY_NO_MATCH
+            pushPage("showResultsFailurePage.html")
+      , (error) ->
+        sharedData.responseErrorId = constants.ERROR_BY_NO_SERVER_RESPONSE
+        sharedData.responseError = angular.copy(error)
+        pushPage("showResultsFailurePage.html")
     , (error) ->
       sharedData.responseErrorId = constants.ERROR_BY_RETRIEVING_POSITION
       sharedData.responseError = angular.copy(error)
