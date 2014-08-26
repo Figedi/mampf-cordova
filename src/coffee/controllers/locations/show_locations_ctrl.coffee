@@ -11,13 +11,16 @@ showLocations = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, s
 
   $scope.editLocation = (location) ->
     sharedData.location = location
-    ons.navigator.pushPage('partials/profile/locationDetail.html', { animation: "fade" })
+    ons.navigator.pushPage('partials/locations/locationDetail.html', { animation: "fade" })
 
   $scope.deleteAllSelected = ->
     $scope.deleteLocation(location) for location in $scope.locations.filter((location) -> location.selected)
 
   $scope.deleteLocation = ($index) ->
     $scope.locations.splice($index,1)
+
+  $scope.testo = ($event) ->
+    console.log "we have a drag", $event
 ]
 
 module.exports = showLocations

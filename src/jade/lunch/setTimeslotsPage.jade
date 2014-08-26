@@ -21,9 +21,7 @@ ons-page.center(ng-controller="TimeslotCtrl")
   | Start- und Endzeit festlegen
   ons-row(align="center")
     ons-col
-      ons-button(ng-click="ons.navigator.popPage();") Zurück
-    ons-col
-      ons-button(ng-click="saveTimeSlots() && ons.navigator.popPage();") Hinzufügen
+      ons-button(ng-click="ons.navigator.popPage();") Fertig
 
 // obiger versuch 1 klappt nur, wenn die untere ons-row vorhanden bleibt, ansonsten wird wieder nichts gebunden
 // die row muss außerdem einen border besitzen, da es ansonsten auch nicht funktioniert

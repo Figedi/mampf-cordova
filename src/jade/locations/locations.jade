@@ -1,0 +1,14 @@
+ons-navigator(ng-controller="ShowLocationsCtrl")
+  ons-page.center
+    ons-toolbar
+      .center Gespeicherte Orte
+      .right
+        ons-toolbar-button(ng-click="ons.navigator.pushPage('partials/locations/addNewLocationPage.html')")
+          ons-icon(icon="plus")
+    section(style="padding: 8px" )
+      ons-list
+        ons-gesture-detector
+          mampf-list-item(ng-repeat="location in locations") {{location.locationName}}
+
+
+

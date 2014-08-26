@@ -1,4 +1,4 @@
-app = angular.module 'mampfApp', ['onsen.directives', 'ngMd5', 'ui.map', 'angularLocalStorage', 'ui.validate']
+app = angular.module 'mampfApp', ['onsen.directives', 'ngMd5', 'ui.map', 'angularLocalStorage', 'ui.validate', 'ngTouch']
 #app config/statics
 constants =
   config : require('./config/static.coffee')
@@ -20,9 +20,14 @@ app.factory factories
 
 #controllers from other files
 controllers =
-  #contacts
+  #contacts (addLocation in ContactList)
   ContactListCtrl    : require('./controllers/contacts/contact_list_ctrl.coffee')
   ContactDetailsCtrl : require('./controllers/contacts/contact_details_ctrl.coffee')
+
+  #locations
+  AddLocationCtrl    : require('./controllers/locations/add_location_ctrl.coffee')
+  ShowLocationsCtrl  : require('./controllers/locations/show_locations_ctrl.coffee')
+  LocationDetailCtrl : require('./controllers/locations/location_detail_ctrl.coffee')
 
   #lunch
   LunchRequestCtrl   : require('./controllers/lunch/lunch_request_ctrl.coffee')
@@ -33,9 +38,6 @@ controllers =
 
   #profile
   ProfileCtrl        : require('./controllers/profile/profile_ctrl.coffee')
-  AddLocationCtrl    : require('./controllers/profile/add_location_ctrl.coffee')
-  ShowLocationsCtrl  : require('./controllers/profile/show_locations_ctrl.coffee')
-  LocationDetailCtrl : require('./controllers/profile/location_detail_ctrl.coffee')
 
 app.controller controllers
 
@@ -43,6 +45,10 @@ directives =
   sharedValidate     : require('./directives/shared_validate.coffee')
 
 app.directive directives
+
+#overwrite onsen directive list-item
+#
+angular.module('onsen').directive 'mampfListItem', require('./directives/ons_list_item.coffee')
 
 # listen to onGoogleReady callback since we are loading the Maps API asynchronously
 # after that we can bootstrap the application for the body element

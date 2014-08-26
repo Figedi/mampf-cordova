@@ -9,19 +9,3 @@ ons-navigator(ng-controller="ProfileCtrl")
         input(class="text-input", ng-class="{ 'form-error': profileForm.telephone.$invalid }", name="telephone", ng-model="user.telephone",
           ng-required="true", ng-pattern="/\s*\\+49[0-9 ]{7,}/", placeholder="Bitte ihre eigene Handynummer eingeben", style="display: block; width: 100%")
         span.form-error-description(ng-show="profileForm.telephone.$invalid") Telefonnummer muss im Format +49 1234 12345 (Leerzeichen optional) sein
-    .profileButtons
-      ons-row(style="padding: 8px")
-        ons-col(align="center")
-          ons-button(ng-click="ons.navigator.pushPage('partials/profile/showLocationsPage.html', { animation : 'slide' } )")
-            .leftIconButton
-              ons-icon(icon="map-marker")
-            .center
-              | Orte anzeigen
-
-      ons-row(style="padding: 8px")
-        ons-col(align="center")
-          ons-button(ng-click="ons.navigator.pushPage('partials/profile/addNewLocationPage.html', { animation : 'slide' } )")
-            .leftIconButton
-              ons-icon(icon="plus")
-            .center
-              | Ort hinzufügen

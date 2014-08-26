@@ -7,6 +7,9 @@
 chooseContacts = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, storage, sharedData) ->
   #if user already selected users, return the sharedData object
   $scope.hideNoContactElement = false
+
+
+
   if sharedData.contacts.length
     $scope.contactsForChoose = sharedData.contacts
   else #if no prior selection, return a new object
