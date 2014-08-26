@@ -8,7 +8,7 @@
  *
  * @return {void} No explicit returnvalue needed
 ###
-lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constants', 'geoLocation', '$q', '$rootScope', (server, $scope, sharedData, storage, config, constants, geoLocation, $q, $rootScope) ->
+lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constants', 'geoLocation', '$q', (server, $scope, sharedData, storage, config, constants, geoLocation, $q) ->
 
   storage.bind($scope, 'user')
 
@@ -35,6 +35,12 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
         null
       else
         null
+
+  $scope.getSelectedTimes = ->
+    if sharedData.timeslots?
+      sharedData.timeslots.length
+    else
+      "Keine"
 
   pushPage = (pageSuffix) ->
     pagePath = 'partials/lunch/' + pageSuffix

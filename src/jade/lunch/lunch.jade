@@ -3,29 +3,29 @@ ons-navigator(ng-controller="LunchRequestCtrl")
     ons-toolbar
       .center Neuer Essensvorschlag
     section.center(style="padding: 8px" )
-    .greatButtons
       ons-row(style="padding: 8px")
         ons-col(align="center")
-          ons-button(ng-click="ons.navigator.pushPage('partials/lunch/setTimeslotsPage.html', { animation : 'slide' } )" )
+          ons-button(modifier="large", ng-click="ons.navigator.pushPage('partials/lunch/setTimeslotsPage.html', { animation : 'slide' } )" )
             | Zeiten angeben
+          br
+          | Ausgewählte Zeiten: {{getSelectedTimes()}}
       ons-row(style="padding: 8px")
         ons-col(align="center")
-          ons-button(ng-click="ons.navigator.pushPage('partials/lunch/chooseLocationPage.html', { animation : 'slide' } )" )
+          ons-button(modifier="large", ng-click="ons.navigator.pushPage('partials/lunch/chooseLocationPage.html', { animation : 'slide' } )" )
             | Ort auswählen
           br
-          | Ausgewählter Ort: {{getSelectedLocationName() || "Kein Ort ausgewählt"}}
+          | Ausgewählter Ort: {{getSelectedLocationName() || "Keiner"}}
 
       ons-row(style="padding: 8px")
         ons-col(align="center")
-          ons-button(ng-click="ons.navigator.pushPage('partials/lunch/chooseContactsPage.html', { animation : 'slide' } )" )
+          ons-button(modifier="large", ng-click="ons.navigator.pushPage('partials/lunch/chooseContactsPage.html', { animation : 'slide' } )" )
             | Kontakte auswählen
           br
-          | Anzahl ausgewählter Kontakte: {{getCount()}}
+          | Ausgewählte Kontakte: {{getCount() || "Keine"}}
 
       ons-row(style="padding: 8px;margin-top: 16px")
         ons-col(align="center")
-          ons-button(ng-click="doRequest()", disabled="{{requestNotReady()}}" )
-            .leftIconButton
-              ons-icon(icon="cutlery")
+          ons-button(icon="cutlery", modifier="large", ng-click="doRequest()", disabled="{{requestNotReady()}}" )
             .center
+              ons-icon(icon="cutlery")
               | Anfrage verschicken
