@@ -8,7 +8,7 @@
  *
  * @return {void} No explicit returnvalue needed
 ###
-lunchRequest = ['$http', '$scope', 'sharedData', 'storage', 'config', 'constants', 'geoLocation', '$q', '$rootScope', ($http, $scope, sharedData, storage, config, constants, geoLocation, $q, $rootScope) ->
+lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constants', 'geoLocation', '$q', '$rootScope', (server, $scope, sharedData, storage, config, constants, geoLocation, $q, $rootScope) ->
 
   storage.bind($scope, 'user')
 
@@ -41,13 +41,6 @@ lunchRequest = ['$http', '$scope', 'sharedData', 'storage', 'config', 'constants
     sharedData.location = location
     ons.navigator.pushPage(pagePath, { animation: "slide" })
 
-  $scope.sendRequest = (inputdata) ->
-    console.log "it works request", inputdata
-    $http
-      method: 'POST'
-      url:"#{config.server}"
-      data: inputdata
-
   $scope.doRequest = ->
     # first, fetch invitees' hashes
     inviteeHashes = sharedData.contacts.filter((contact) -> contact.selected).map((contact) -> contact.telephoneHash)
@@ -61,16 +54,15 @@ lunchRequest = ['$http', '$scope', 'sharedData', 'storage', 'config', 'constants
         invitees: inviteeHashes
         currentPosition: coords
         timeslots: sharedData.timeslots
-      console.log "herrror", request
-      $scope.sendRequest(request).then (response) ->
-          console.log "response", response
-          if response.data.subjects.length #not null, so we have a valid match
-            sharedData.responseData = angular.copy(response.data)
-            sharedData.responseErrorId = constants.NO_ERROR
-            pushPage("showResultsSuccessPage.html")
-          else #
-            sharedData.responseErrorId = constants.ERROR_BY_NO_MATCH
-            pushPage("showResultsFailurePage.html")
+      #$scope.sendRequest(request).then (response) ->
+      server.send(request).then (response) ->
+        if response.data.subjects.length == 0
+          sharedData.responseErrorId = constants.ERROR_BY_NO_MATCH
+          pushPage("showResultsFailurePage.html")
+        else
+          sharedData.responseData = angular.copy(response.data)
+          sharedData.responseErrorId = constants.NO_ERROR
+          pushPage("showResultsSuccessPage.html")
       , (error) ->
         sharedData.responseErrorId = constants.ERROR_BY_NO_SERVER_RESPONSE
         sharedData.responseError = angular.copy(error)

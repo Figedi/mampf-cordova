@@ -25,6 +25,7 @@ timeslotsctrl = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, s
 
   $scope.removeTimeSlot = ($index) ->
     $scope.timeslots.splice($index,1)
+    _setSharedTimeslotData()
 
   _setSharedTimeslotData = ->
     tmpDate = new Date()
