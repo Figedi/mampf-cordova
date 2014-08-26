@@ -63,7 +63,6 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
         invitees: inviteeHashes
         currentPosition: coords
         timeslots: sharedData.timeslots
-      #$scope.sendRequest(request).then (response) ->
       server.send(request).then (response) ->
         if response.data.subjects.length == 0
           sharedData.responseErrorId = constants.ERROR_BY_NO_MATCH

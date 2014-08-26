@@ -9,7 +9,7 @@ ons-page.center(ng-controller="ChooseContactCtrl")
       | Ausgewählte Kontakte {{(contactsForChoose | filter:{selected: true}).length}}
     ons-list
       ons-list-item(ng-repeat="contact in contactsForChoose", ng-class="{ selected: contact.selected }", ng-click="toggleContact(contact)") {{contact.displayName}}
-      ons-list-item(ng-hide="hideNoContactElement")
+      ons-list-item(ng-hide="contactsForChoose.length")
         .leftIconItem
           ons-icon(icon="frown-o")
         .center
