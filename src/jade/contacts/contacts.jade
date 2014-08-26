@@ -7,4 +7,6 @@ ons-navigator(ng-controller="ContactListCtrl")
           ons-icon(icon="plus")
     section(style="padding: 8px")
       ons-list
-        ons-list-item(ng-repeat="contact in contacts") {{contact.displayName}}
+        ons-list-item(ng-repeat="contact in contacts")
+          ons-gesture-detector(ng-dragleft="console.log($event)")
+            div {{contact.displayName}}
