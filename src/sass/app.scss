@@ -25,22 +25,18 @@
   margin-bottom: 16px
 }
 
-.testSwipe {
-  color: red;
-}
-
 ons-list-item.selected {
   background-color: #1284ff;
   color: #fff;
 }
 
-.profileButtons button {
+.profileButtons ons-button {
   width: 50%;
   text-align: center;
   margin-top: 16px
 }
 
-.greatButtons button {
+.greatButtons ons-button {
   width: 60%;
   text-align: center;
   margin-top: 16px
@@ -72,15 +68,6 @@ input.ng-invalid {
   border: 1px solid red;
 }
 
-.settingsMenu {
-  float: left;
-  width: 40%;
-
-  button {
-    border: 0px solid #fff;
-  }
-}
-
 .leftIconButton {
   float: left;
   text-align: center;
@@ -91,27 +78,10 @@ input.ng-invalid {
 }
 
 .removeTimeSlotButton {
-  button {
-    border: 0px;
-    border-color: #ffffff;
-  }
+  border: none;
 
   ons-icon {
     color: red;
-  }
-}
-
-.leftIconRemoveItem {
-  float: left;
-
-  button {
-    border: 0px;
-    border-color: #ffffff;
-  }
-
-  ons-icon {
-    color: red;
-    margin-top: 28%;
   }
 }
 
