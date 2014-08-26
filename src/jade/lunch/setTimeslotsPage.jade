@@ -1,17 +1,19 @@
 ons-page.center(ng-controller="TimeslotCtrl")
   ons-toolbar
+    .left
+      ons-back-button(ons-if-platform="ios") Zurück
     .center Zeiten auswählen
     .right
         ons-toolbar-button(ng-click="addTimeSlot()")
           ons-icon(icon="plus")
 
   label.form-label Start- und Endzeit festlegen
-  ons-row.bordered(align="center",ng-repeat="timeslot in timeslots track by $index")
+  ons-row(align="center",ng-repeat="timeslot in timeslots track by $index")
     ons-col(width="45%")
       input.timeInput(ui-validate=" 'validateTime($value,timeslot.endTime)' ", ui-validate-watch=" 'timeslot.endTime' ", name="startTime", type="time",
         class="text-input", ng-model="timeslot.startTime")
     ons-col(width="45%")
-      input.timeInput(ui-validate=" 'validateTime(timeslot.startTime,$value)' ", ui-validate-watch=" 'timeslot.endTime' ", name="startTime", type="time",
+      input.timeInput(ui-validate=" 'validateTime(timeslot.startTime,$value)' ", ui-validate-watch=" 'timeslot.startTime' ", name="endTime", type="time",
         class="text-input", ng-model="timeslot.endTime")
     ons-col(width="5%")
       ons-button.removeTimeSlotButton(ng-click="removeTimeSlot($index)",modifier="light")

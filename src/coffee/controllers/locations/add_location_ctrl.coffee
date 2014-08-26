@@ -9,7 +9,7 @@
 addLocation = ['$scope', 'config', 'storage', 'sharedData', 'geoLocation', ($scope, config, storage, sharedData, geoLocation) ->
 
   storage.bind($scope, 'locations', { defaultValue: config.dummyLocations })
-
+  sharedData.locations = $scope.locations #alias sharedData.locations with current scope
   $scope.locationModel = "Ort #{$scope.locations.length + 1}"
 
 
@@ -26,9 +26,9 @@ addLocation = ['$scope', 'config', 'storage', 'sharedData', 'geoLocation', ($sco
       selected: false
       latitude: lat
       longitude: lng
-    #same as in addContact, when sharedData has been touched, add new location
-    sharedData.locations.push(location) if sharedData.locations.length
-    $scope.locations.push(location)
+    # add new location to sharedData and storage, saving is done
+    sharedData.locations.push(location)
+    storage.set('locations', sharedData.locations)
 
 
   $scope.mapClick = ($event, $params) ->

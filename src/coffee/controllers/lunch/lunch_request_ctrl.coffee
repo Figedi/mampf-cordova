@@ -11,6 +11,7 @@
 lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constants', 'geoLocation', '$q', (server, $scope, sharedData, storage, config, constants, geoLocation, $q) ->
 
   storage.bind($scope, 'user')
+  storage.bind($scope, 'timeslots')
 
   # data binding doesnt seem to work without a request data model
 
@@ -39,6 +40,8 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
   $scope.getSelectedTimes = ->
     if sharedData.timeslots?
       sharedData.timeslots.length
+    else if $scope.timeslots?.length
+      $scope.timeslots?.length
     else
       "Keine"
 

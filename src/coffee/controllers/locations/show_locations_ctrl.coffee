@@ -5,9 +5,10 @@
  * @return {void} No explicit returnvalue needed
 ###
 showLocations = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, storage, sharedData) ->
+
   storage.bind($scope, 'locations', { defaultValue: config.dummyLocations })
 
-  $scope.showActions = false;
+  $scope.showActions = false
 
   $scope.editLocation = (location) ->
     sharedData.location = location
@@ -19,8 +20,11 @@ showLocations = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, s
   $scope.deleteLocation = ($index) ->
     $scope.locations.splice($index,1)
 
-  $scope.testo = ($event) ->
-    console.log "we have a drag", $event
+  #update the scope with new locations if changed when locationpage is popped
+  locationsNav.on 'prepop', ->
+    if sharedData.locations.length
+      $scope.locations = sharedData.locations
+
 ]
 
 module.exports = showLocations

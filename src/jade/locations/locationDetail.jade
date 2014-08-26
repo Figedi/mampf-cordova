@@ -1,5 +1,7 @@
 ons-page.center(ng-controller="LocationDetailCtrl")
   ons-toolbar
+    .left
+      ons-back-button(ons-if-platform="ios") Zurück
     .center {{location.locationName}} - Detailansicht
   section
     div(ui-map="modalMampfMap", class="map", ui-event="{ 'map-click': 'mapClick($event,$params)' }", ui-options="modalMapOptions")

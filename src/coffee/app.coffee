@@ -41,11 +41,6 @@ controllers =
 
 app.controller controllers
 
-directives =
-  sharedValidate     : require('./directives/shared_validate.coffee')
-
-app.directive directives
-
 #overwrite onsen directive list-item
 #
 angular.module('onsen').directive 'mampfListItem', require('./directives/ons_list_item.coffee')

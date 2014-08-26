@@ -1,16 +1,16 @@
+TIME_FORMAT_OPTONS = ['de', { hour: '2-digit', minute:'2-digit' }]
+
 timeslotsctrl = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, storage, sharedData) ->
 
   storage.bind($scope, 'timeslots', { defaultValue: config.defaultTimeslots })
 
-  $scope.validateTime = (value1,value2) ->
-    value1 <= value2
+  $scope.validateTime = (value1, value2) -> parseInt(value1) <= parseInt(value2)
 
-  $scope.setDateTime = (id)->
+  $scope.setDateTime = (id) ->
     date = new Date()
-    # anstelle von toLocaleTimeString(navigator.language, lieber de nutzen für deutsche Ausgabe
-    $scope.timeslots[id].startTime = date.toLocaleTimeString('de', {hour: '2-digit', minute:'2-digit'})
+    $scope.timeslots[id].startTime = date.toLocaleTimeString(TIME_FORMAT_OPTONS...)
     plus2Hours = date.getTime() + 1000 * 60 * 60 * 2
-    $scope.timeslots[id].endTime = (new Date(plus2Hours)).toLocaleTimeString('de', {hour: '2-digit', minute:'2-digit'})
+    $scope.timeslots[id].endTime = (new Date(plus2Hours)).toLocaleTimeString(TIME_FORMAT_OPTONS...)
 
   # set current date
   $scope.setDateTime(0)
@@ -41,8 +41,7 @@ timeslotsctrl = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, s
 
   _setSharedTimeslotData()
 
-  $scope.saveTimeSlots = () ->
-    _setSharedTimeslotData()
+  $scope.saveTimeSlots = _setSharedTimeslotData
 ]
 
 module.exports = timeslotsctrl
