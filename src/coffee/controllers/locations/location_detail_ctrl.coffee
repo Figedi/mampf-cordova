@@ -10,6 +10,7 @@
 locationDetail = ['$scope', 'config', 'sharedData', '$timeout', 'storage', ($scope, config, sharedData, $timeout, storage) ->
 
   storage.bind($scope, 'locations', { defaultValue: config.dummyLocations })
+
   $scope.location = sharedData.location
   $scope.modalMapOptions =
     center: new google.maps.LatLng($scope.location.latitude, $scope.location.longitude)

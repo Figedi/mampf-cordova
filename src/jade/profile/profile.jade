@@ -4,8 +4,23 @@ ons-navigator(ng-controller="ProfileCtrl")
       .center Profil
     section(style="padding: 8px")
       form(name="profileForm", novalidate)
-        label.form-label Handynummer
+        ons-row
+          label.form-label Handynummer
+        ons-row
+          ons-col
+            input(class="text-input", ng-class="{ 'form-error': profileForm.telephone.$invalid }", name="telephone", ng-model="user.telephone",
+              ng-required="true", ng-pattern="/\s*\\+49[0-9 ]{7,}/", placeholder="Bitte ihre eigene Handynummer eingeben", style="display: block; width: 100%")
+            span.form-error-description(ng-show="profileForm.telephone.$invalid") Format +49 1234 12345 (Leerzeichen optional)
         br
-        input(class="text-input", ng-class="{ 'form-error': profileForm.telephone.$invalid }", name="telephone", ng-model="user.telephone",
-          ng-required="true", ng-pattern="/\s*\\+49[0-9 ]{7,}/", placeholder="Bitte ihre eigene Handynummer eingeben", style="display: block; width: 100%")
-        span.form-error-description(ng-show="profileForm.telephone.$invalid") Telefonnummer muss im Format +49 1234 12345 (Leerzeichen optional) sein
+        ons-row
+          label.form-label Kontaktprovider
+        ons-row
+          ons-col
+            ons-list
+              ons-list-item(ng-class="{ selected: provider == 'local'}", ng-click="setProvider('local')")
+                ons-icon.checkMark(icon="check", ng-show="provider == 'local'")
+                | Lokal
+              ons-list-item(ng-class="{ selected: provider == 'contacts' }", ng-click="setProvider('contacts')")
+                ons-icon.checkMark(icon="check", ng-show="provider == 'contacts'")
+                |  Google Contacts
+

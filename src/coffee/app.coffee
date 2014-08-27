@@ -4,6 +4,7 @@ constants =
   config : require('./config/static.coffee')
   constants : require('./config/constants.coffee')
   _ : window._ #lodash for DI
+  OAuth: window.OAuth #OAuth.io for DI
 
 app.constant constants
 
@@ -15,6 +16,7 @@ factories =
   geoLocation        : require('./factories/geolocation.coffee')
   sharedData         : require('./factories/shared_data.coffee')
   server             : require('./factories/server.coffee')
+  googleContacts     : require('./factories/google_contacts.coffee')
 
 app.factory factories
 
@@ -23,6 +25,7 @@ controllers =
   #contacts (addLocation in ContactList)
   ContactListCtrl    : require('./controllers/contacts/contact_list_ctrl.coffee')
   ContactDetailsCtrl : require('./controllers/contacts/contact_details_ctrl.coffee')
+  googleContactsCtrl : require('./controllers/contacts/google_contacts_ctrl.coffee')
 
   #locations
   AddLocationCtrl    : require('./controllers/locations/add_location_ctrl.coffee')

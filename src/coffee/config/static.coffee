@@ -35,8 +35,9 @@ conf =
       endTime: "14:00"
     }
   ]
-
   dummyUser:
     telephone: "01522905094913"
     telephoneHash: "d949dd7b976c60f70f6492ee673d6768"
+  provider: # activate local provider as default
+    type: 'local'
 module.exports = conf

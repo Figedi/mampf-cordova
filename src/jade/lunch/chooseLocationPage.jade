@@ -7,7 +7,7 @@ ons-page.center(ng-controller="ChooseLocationCtrl")
   section(style="float: center; padding: 8px")
     div
       ons-list
-        ons-list-item(ng-repeat="location in locationsForChoose", ng-class="{selected: location.selected }", ng-click="toggleLocation(location)") {{location.locationName}}
+        ons-list-item(ng-repeat="location in locationsForChoose", ng-class="{ selected: location.selected }", ng-click="toggleLocation(location)") {{location.locationName}}
         ons-list-item.current_position(ng-class="{ selected: positionLocation }", ng-click="setLocationPosition()")
           .leftIconItem
             ons-icon(icon="location-arrow")

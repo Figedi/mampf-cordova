@@ -1,4 +1,5 @@
-contact = ['$window', '$timeout', '$q', ($window, $timeout, $q) ->
+contact = [ '$q', ($q) ->
+
   _get = ->
     deferred = $q.defer()
     navigator.contacts.pickContact (contact) ->

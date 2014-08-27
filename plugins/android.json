@@ -23,6 +23,14 @@
                         {
                             "xml": "<feature name=\"DatePickerPlugin\"><param name=\"android-package\" value=\"com.plugin.datepicker.DatePickerPlugin\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<access origin=\"https://oauth.io\" />",
+                            "count": 1
                         }
                     ]
                 }
@@ -73,7 +81,14 @@
         },
         "org.apache.cordova.geolocation": {
             "PACKAGE_NAME": "de.mampf"
+        },
+        "com.oauthio.plugins.oauthio": {
+            "PACKAGE_NAME": "de.mampf"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "org.apache.cordova.inappbrowser": {
+            "PACKAGE_NAME": "de.mampf"
+        }
+    }
 }
