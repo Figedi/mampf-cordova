@@ -23,6 +23,18 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
       $scope.getSelectedLocationName() == null || typeof sharedData.timeslots == 'undefined'
 
 
+  $scope.openModal = (errorCode) ->
+    switch errorCode
+      when constants.ERROR_BY_NO_MATCH
+        $scope.failureReason = "Keine übereinstimmende Anfrage!"
+      when constants.ERROR_BY_NO_SERVER_RESPONSE
+        $scope.failureReason = "Server antwortet nicht!"
+      when constants.ERROR_BY_RETRIEVING_POSITION
+        $scope.failureReason = "Aktuelle Position nicht ermittelbar!"
+      else
+        $scope.failureReason = "Unbekannter Fehler"
+    failureModal.show()
+
   $scope.isUserPropertiesDefined = -> $scope.user?.telephone? && $scope.user.telephoneHash?
 
   $scope.getSelectedLocationName = ->
@@ -66,7 +78,8 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
       server.send(request).then (response) ->
         if response.data.subjects.length == 0
           sharedData.responseErrorId = constants.ERROR_BY_NO_MATCH
-          pushPage("showResultsFailurePage.html")
+          #pushPage("showResultsFailurePage.html")
+          $scope.openModal(constants.ERROR_BY_NO_MATCH)
         else
           sharedData.responseData = angular.copy(response.data)
           sharedData.responseErrorId = constants.NO_ERROR
@@ -74,11 +87,13 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
       , (error) ->
         sharedData.responseErrorId = constants.ERROR_BY_NO_SERVER_RESPONSE
         sharedData.responseError = angular.copy(error)
-        pushPage("showResultsFailurePage.html")
+        #pushPage("showResultsFailurePage.html")
+        $scope.openModal(constants.ERROR_BY_NO_SERVER_RESPONSE)
     , (error) ->
       sharedData.responseErrorId = constants.ERROR_BY_RETRIEVING_POSITION
       sharedData.responseError = angular.copy(error)
-      pushPage("showResultsFailurePage.html")
+      #pushPage("showResultsFailurePage.html")
+      $scope.openModal(constants.ERROR_BY_RETRIEVING_POSITION)
 
 
   # determines current selected type, can be either location or GPS

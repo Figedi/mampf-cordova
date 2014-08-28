@@ -1,5 +1,11 @@
 ons-navigator(ng-controller="LunchRequestCtrl")
   ons-page
+    ons-modal(var="failureModal",ng-click="failureModal.hide()")
+      ons-icon.center(icon="frown-o")
+      br
+      | Leider kein Sucherfolg. Bitte erneut suchen!
+      br
+      {{failureReason}}
     ons-toolbar
       .center Neuer Essensvorschlag
     section.center(style="padding: 8px" )

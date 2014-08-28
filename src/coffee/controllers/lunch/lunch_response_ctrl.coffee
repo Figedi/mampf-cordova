@@ -4,14 +4,10 @@ lunchResponse = ['$http', '$scope', 'sharedData', 'storage', 'config', 'constant
 
   $scope.setTitle = ->
     switch sharedData.responseErrorId
-      when constants.ERROR_BY_RETRIEVING_POSITION
-        "Fehler beim Abfragen der aktuellen Position"
-      when constants.ERROR_BY_NO_SERVER_RESPONSE
-        "Fehler - Keine Antwort vom Server. Fehlercode: #{sharedData.responseError.status}"
-      when constants.ERROR_BY_NO_MATCH
-        "Fehler - Keine treffende Übereinstimmung"
       when constants.NO_ERROR
         "Erfolgreiche Suche"
+      else
+        "Fehlerbehaftete Suche"
 
   $scope.setContacts = ->
     $scope.selectedContacts = []
