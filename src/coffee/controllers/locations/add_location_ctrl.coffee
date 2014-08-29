@@ -19,6 +19,8 @@ addLocation = ['$scope', 'config', 'storage', 'sharedData', 'geoLocation', ($sco
     mapTypeId: google.maps.MapTypeId.ROADMAP
 
   $scope.addNewLocation = ->
+    return false unless $scope.marker?
+
     lat = $scope.marker.getPosition().lat()
     lng = $scope.marker.getPosition().lng()
     location =
@@ -49,6 +51,7 @@ addLocation = ['$scope', 'config', 'storage', 'sharedData', 'geoLocation', ($sco
         $scope.marker = new google.maps.Marker({ position: lngLat, map: $scope.mampfMap })
     , (err) ->
       console.log "lol noch ein geo fehler", err
+
   $scope.refreshPosition() #refresh for the first time controller is invoked
 
 ]
