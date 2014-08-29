@@ -23,7 +23,7 @@ profile = ['$scope', 'md5', 'config', '_', 'storage', 'sharedData', ($scope, md5
   $scope.$watch 'user.telephone', _.debounce((newValue) ->
     return unless newValue
     $scope.$apply ->
-      $scope.user.telephone = newValue.replace(" ", "")
+      $scope.user.telephone = newValue.replace(RegExp(" ", "g"), "")
       $scope.user.telephoneHash = md5.createHash(""+$scope.user.telephone)
       sharedData.user = $scope.user
   , 500)
