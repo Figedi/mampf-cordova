@@ -16,7 +16,7 @@ contactAdd = ['$scope', 'sharedData', 'storage', 'config', 'md5', ($scope, share
       telephone: $scope.contact.telephone
       telephoneHash: md5.createHash(""+$scope.contact.telephone)
 
-    sharedData.contacts = [contact]
+    sharedData.contacts.push(contact)
 
 ]
 

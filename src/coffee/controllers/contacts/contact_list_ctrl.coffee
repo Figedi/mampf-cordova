@@ -16,7 +16,7 @@
  *
  * @return {void} No explicit returnvalue needed
 ###
-contactsList = ['$scope', 'contactChooser', 'sharedData', 'storage', 'config', 'md5', ($scope, contactChooser, sharedData, storage, config, md5) ->
+contactsList = ['$scope', 'contactChooser', 'sharedData', 'storage', 'config', 'md5', '_', ($scope, contactChooser, sharedData, storage, config, md5, _) ->
 
   # bind storage to scope, thus creating two way binding between
   # scope AND localstorage, every scope change is saved in localstorage
@@ -59,8 +59,8 @@ contactsList = ['$scope', 'contactChooser', 'sharedData', 'storage', 'config', '
     #update the scope with new contacts if changed when contactpage is popped
     contactsNav.on 'prepop', ->
       if sharedData.contacts.length
-        console.log "contacts after", sharedData.contacts
-        $scope.contacts.push(contact) for contact in sharedData.contacts
+        console.log "contacts after", _.merge(sharedData.contacts,$scope.contacts)
+        $scope.contacts = _.merge(sharedData.contacts,$scope.contacts)
         console.log "contacts after after", $scope.contacts
 
 ]
