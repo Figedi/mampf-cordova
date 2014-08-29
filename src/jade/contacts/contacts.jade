@@ -3,7 +3,10 @@ ons-navigator(ng-controller="ContactListCtrl", var="contactsNav")
     ons-toolbar
       .center Kontakte
       .right
-        ons-toolbar-button(ng-click="contactAdd()",ng-hide="isBrowser()")
+        ons-toolbar-button(ng-click="contactAdd()",ng-hide="!isSmartphone()")
+          ons-icon(icon="plus")
+        ons-toolbar-button(ng-click="ons.navigator.pushPage('partials/contacts/addNewContactPage.html')",
+          ng-hide="isSmartphone()")
           ons-icon(icon="plus")
     section(style="padding: 8px")
       ons-list

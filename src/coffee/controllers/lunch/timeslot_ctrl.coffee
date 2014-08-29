@@ -4,7 +4,7 @@ timeslotsctrl = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, s
 
   storage.bind($scope, 'timeslots', { defaultValue: config.defaultTimeslots })
 
-  $scope.validateTime = (value1, value2) -> parseInt(value1) <= parseInt(value2)
+  $scope.validateTime = (date1, date2) -> parseInt(date1.replace(":","")) <= parseInt(date2.replace(":",""))
 
   $scope.setDateTime = (id) ->
     date = new Date()

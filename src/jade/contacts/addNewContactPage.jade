@@ -1,0 +1,28 @@
+ons-page(ng-controller="AddNewContactCtrl")
+  ons-toolbar
+    .center Kontakt hinzufügen
+  section(style="padding: 8px")
+    form(name="contactAddForm", novalidate)
+      ons-row
+        label.form-label Name
+      ons-row
+        input(type="text" style="text-align: center;display: block; width: 100%", ng-model="contact.displayName",
+            class="text-input", ng-required="true", pattern=".+", placeholder="Bitte einen Namen eingeben",
+            name="displayName", ng-class="{ 'form-error': contactAddForm.displayName.$invalid }")
+        span.form-error-description(ng-show="contactAddForm.displayName.$invalid")
+          | Der Name muss aus mindestens 1 Zeichen bestehen.
+      br
+      ons-row
+        label.form-label Handynummer
+      ons-row
+        ons-col
+          input(class="text-input", ng-class="{ 'form-error': contactAddForm.telephone.$invalid }", name="telephone",
+              ng-model="contact.telephone", ng-required="true", ng-pattern="/\s*\\+49[0-9 ]{7,}/",
+              placeholder="Bitte eine Handynummer eingeben", style="display: block; width: 100%")
+          span.form-error-description(ng-show="contactAddForm.telephone.$invalid")
+              | Format +49 1234 12345 (Leerzeichen optional)
+  ons-row(style="padding: 8px")
+    ons-col(align="center")
+      ons-button(modifier="large", ng-click="addNewContact() && ons.navigator.popPage();") Hinzufügen
+
+

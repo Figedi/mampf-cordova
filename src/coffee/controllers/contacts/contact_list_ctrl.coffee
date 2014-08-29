@@ -26,8 +26,8 @@ contactsList = ['$scope', 'contactChooser', 'sharedData', 'storage', 'config', '
     contact.selected = not contact.selected
     sharedData.contacts = $scope.contacts
 
-  $scope.isBrowser = ->
-    not navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)
+  $scope.isSmartphone = ->
+    navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)
 
   $scope.contactAdd = ->
     contactsProvider = storage.get('provider')
@@ -53,7 +53,7 @@ contactsList = ['$scope', 'contactChooser', 'sharedData', 'storage', 'config', '
     else if contactsProvider == 'contacts'
       contactsNav.pushPage('partials/contacts/google_contacts.html')
 
-    #update the scope with new locations if changed when locationpage is popped
+    #update the scope with new contacts if changed when contactpage is popped
     contactsNav.on 'prepop', ->
       if sharedData.contacts.length
         console.log "contacts", sharedData.contacts

@@ -26,6 +26,7 @@ controllers =
   ContactListCtrl    : require('./controllers/contacts/contact_list_ctrl.coffee')
   ContactDetailsCtrl : require('./controllers/contacts/contact_details_ctrl.coffee')
   googleContactsCtrl : require('./controllers/contacts/google_contacts_ctrl.coffee')
+  AddNewContactCtrl  : require('./controllers/contacts/add_new_contact_ctrl.coffee')
 
   #locations
   AddLocationCtrl    : require('./controllers/locations/add_location_ctrl.coffee')
