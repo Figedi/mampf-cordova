@@ -1,7 +1,12 @@
 contactAdd = ['$scope', 'sharedData', 'storage', 'config', 'md5', ($scope, sharedData, storage, config, md5) ->
 
-  storage.bind($scope, 'contacts', { defaultValue: config.dummyContacts })
-  sharedData.contacts = $scope.contacts #alias sharedData.contacts with current scope
+  $scope.contacts = storage.get('contacts')
+
+  $scope.numberExists = ->
+    if $scope.contact
+      $scope.contacts.reduce(((sum, contact) -> sum || (contact.telephone == $scope.contact.telephone)), false)
+    else #initialization has no model (when nothing is typed)
+      false
 
   $scope.addNewContact = ->
     contact =
@@ -10,12 +15,8 @@ contactAdd = ['$scope', 'sharedData', 'storage', 'config', 'md5', ($scope, share
       telephone: $scope.contact.telephone
       telephoneHash: md5.createHash(""+$scope.contact.telephone)
 
-    if $scope.contacts.filter((contact) -> contact.telephone == $scope.contact.telephone).length == 0
-      $scope.contacts.push(contact)
-      storage.set('contacts', $scope.contacts)
-      #if sharedData has been used already, push new contact in it
-      #if sharedData.contacts.length
-      #  sharedData.contacts.push(contact)
+    sharedData.contacts = [contact]
+
 ]
 
 module.exports = contactAdd

@@ -31,6 +31,8 @@ contactsList = ['$scope', 'contactChooser', 'sharedData', 'storage', 'config', '
 
   $scope.contactAdd = ->
     contactsProvider = storage.get('provider')
+    contactsProvider = 'manual' unless $scope.isSmartphone()
+
     if contactsProvider == 'local'
       contactChooser.get().then (contact) ->
         #contactchoose returns always ONE contact
@@ -52,12 +54,14 @@ contactsList = ['$scope', 'contactChooser', 'sharedData', 'storage', 'config', '
         console.log "lol fehler", err
     else if contactsProvider == 'contacts'
       contactsNav.pushPage('partials/contacts/google_contacts.html')
-
+    else if contactsProvider == 'manual'
+      contactsNav.pushPage('partials/contacts/add_new_contact.html')
     #update the scope with new contacts if changed when contactpage is popped
     contactsNav.on 'prepop', ->
       if sharedData.contacts.length
-        console.log "contacts", sharedData.contacts
+        console.log "contacts after", sharedData.contacts
         $scope.contacts.push(contact) for contact in sharedData.contacts
+        console.log "contacts after after", $scope.contacts
 
 ]
 
