@@ -26,7 +26,7 @@ profile = ['$scope', 'md5', 'config', '_', 'storage', 'sharedData', ($scope, md5
       $scope.user.telephone = newValue.replace(RegExp(" ", "g"), "")
       $scope.user.telephoneHash = md5.createHash(""+$scope.user.telephone)
       sharedData.user = $scope.user
-  , 500)
+  , 1000)
 
   $scope.setProvider = (type) -> $scope.provider = type
 

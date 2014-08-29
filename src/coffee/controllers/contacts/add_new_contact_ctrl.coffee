@@ -9,6 +9,7 @@ contactAdd = ['$scope', 'sharedData', 'storage', 'config', 'md5', ($scope, share
       false
 
   $scope.addNewContact = ->
+    $scope.contact.telephone = $scope.contact.telephone.replace(RegExp(" ", "g"), "")
     contact =
       displayName: $scope.contact.displayName
       selected: false
