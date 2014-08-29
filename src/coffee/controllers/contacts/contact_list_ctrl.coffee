@@ -26,6 +26,9 @@ contactsList = ['$scope', 'contactChooser', 'sharedData', 'storage', 'config', '
     contact.selected = not contact.selected
     sharedData.contacts = $scope.contacts
 
+  $scope.isBrowser = ->
+    not navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)
+
   $scope.contactAdd = ->
     contactsProvider = storage.get('provider')
     if contactsProvider == 'local'
