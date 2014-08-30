@@ -18,6 +18,9 @@ addLocation = ['$scope', 'config', 'storage', 'sharedData', 'geoLocation', ($sco
     zoom: 15
     mapTypeId: google.maps.MapTypeId.ROADMAP
 
+  $scope.markerExistent = ->
+    $scope.marker?
+
   $scope.addNewLocation = ->
     return false unless $scope.marker?
 

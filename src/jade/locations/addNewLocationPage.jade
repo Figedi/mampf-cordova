@@ -2,7 +2,10 @@ ons-page.center(ng-controller="AddLocationCtrl")
   ons-toolbar
     .left
       ons-back-button(ons-if-platform="ios") Zurück
-    .center Neuen Ort hinzufügen
+    .center Neuer Ort
+    .right
+      ons-toolbar-button(ng-click="refreshPosition()")
+          ons-icon(icon="location-arrow")
   ons-row(style="float: center")
     ons-col
       section(id="map")
@@ -15,8 +18,9 @@ ons-page.center(ng-controller="AddLocationCtrl")
             input(type="text" style="text-align: center", ng-model="locationModel", class="text-input")
 
 
-  ons-row(style="margin-top: 16px",align="center")
-    ons-col
-      ons-button(ng-click="refreshPosition()") Position abfragen
-    ons-col
-      ons-button(ng-click="addNewLocation() && ons.navigator.popPage();") Hinzufügen
+  ons-row(style="padding: 16px 8px 0px")
+    ons-col(align="center")
+      ons-button(modifier="large",disabled="!markerExistent()",ng-click="addNewLocation() && ons.navigator.popPage();") Hinzufügen
+      br
+      span.form-error-description(ng-show="!markerExistent()")
+        | Google Maps nicht verfügbar
