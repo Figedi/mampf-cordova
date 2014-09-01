@@ -1,14 +1,20 @@
 ons-page(ng-controller="GoogleContactsCtrl")
   ons-toolbar
+    .left
+      ons-back-button(ons-if-platform="ios") Zurück
     .center Google Kontakte
     .right
       ons-toolbar-button(ng-click="refreshContacts()")
         ons-icon(icon="refresh")
-  section(style="padding: 8px")
+  section(style="padding: 8px", ng-show="googleContacts.length")
     ons-list
       ons-list-item(ng-repeat="contact in googleContacts", ng-class="{ selected: contact.selected }", ng-click="toggleContact(contact)") {{contact.displayName}}
-
+  section(style="padding: 8px;", ng-hide="googleContacts.length")
+    .center
+      ons-icon(icon="spin", spin="true")
+      | Kontakte nicht geladen
   section(align="center")
-    ons-button(ng-click="contactsNav.popPage()") Hinzufügen
+    ons-button(ng-click="contactsNav.popPage()", ng-show="contactsSelected()") Hinzufügen
+    ons-button(ng-click="contactsNav.popPage()", ng-hide="contactsSelected()") Zurück
 
 

@@ -2,6 +2,10 @@ contacts = [ '$scope', 'sharedData', 'storage', 'config', 'googleContacts', '_',
 
   $scope.googleContacts = [] #do not inherit from parent scope
   originalContacts = storage.get('contacts')
+
+  $scope.contactsSelected = ->
+    $scope.googleContacts.reduce(((sum, contact) -> sum || contact.selected), false)
+
   $scope.refreshContacts = ->
     googleContacts.getAll().then (contacts) ->
       $scope.googleContacts = contacts

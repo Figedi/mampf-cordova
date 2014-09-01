@@ -1,5 +1,7 @@
 ons-page.center(ng-controller="LunchResponseCtrl")
   ons-toolbar
+    .left
+      ons-back-button(ons-if-platform="ios") Zurück
     .center {{setTitle()}}
 
   section(style="padding: 8px")

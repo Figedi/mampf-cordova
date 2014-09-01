@@ -31,10 +31,8 @@ addLocation = ['$scope', 'config', 'storage', 'sharedData', 'geoLocation', ($sco
       latitude: lat
       longitude: lng
     # add new location to sharedData and storage, saving is done
-    console.log "before locations", $scope.locations, storage.get('locations')
     $scope.locations.push(location)
     storage.set('locations', $scope.locations)
-    console.log "after locations", $scope.locations, storage.get('locations')
     true
 
   $scope.mapClick = ($event, $params) ->
