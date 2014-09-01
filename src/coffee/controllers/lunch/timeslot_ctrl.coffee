@@ -22,8 +22,10 @@ timeslotsctrl = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, s
         endTime: ""
       )
     $scope.setDateTime(nextID)
+    _setSharedTimeslotData()
 
   $scope.removeTimeSlot = ($index) ->
+    return unless $index > 0
     $scope.timeslots.splice($index,1)
     _setSharedTimeslotData()
 
@@ -37,11 +39,13 @@ timeslotsctrl = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, s
           endTime: new Date(Date.parse("#{dateString}, #{timeslot.endTime}")).toISOString()
         }
       )
+    console.log "timeslots", isoTimeSlot
     sharedData.timeslots = isoTimeSlot
 
   _setSharedTimeslotData()
 
-  $scope.saveTimeSlots = _setSharedTimeslotData
+  $scope.saveTimeSlots = ->
+    _setSharedTimeslotData()
 ]
 
 module.exports = timeslotsctrl
