@@ -31,7 +31,11 @@ ons-navigator(ng-controller="LunchRequestCtrl")
 
       ons-row(style="padding: 8px;margin-top: 16px")
         ons-col(align="center")
-          ons-button(icon="cutlery", modifier="large", ng-click="doRequest()", disabled="{{requestNotReady()}}" )
+          ons-button(modifier="large", ng-click="doRequest()", disabled="{{requestNotReady()}}", ng-hide="requestSent")
             .center
               ons-icon(icon="cutlery")
               | Anfrage verschicken
+          ons-button.disabled(modifier="large", ng-show="requestSent")
+            .center
+              ons-icon(icon="cutlery", spin="true")
+              | Anfrage wird verarbeitet

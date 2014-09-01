@@ -133,3 +133,12 @@ input.ng-invalid {
     }
   }
 }
+
+ons-button.disabled {
+  pointer-events: none;
+  &.button {
+    background-color: #b4dbff;
+    cursor: default;
+    pointer-events: none;
+  }
+}

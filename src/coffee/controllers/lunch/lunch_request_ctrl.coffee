@@ -13,6 +13,7 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
   storage.bind($scope, 'user')
   storage.bind($scope, 'timeslots')
 
+  $scope.requestSent = false
   # data binding doesnt seem to work without a request data model
 
   $scope.getCount = ->
@@ -21,7 +22,6 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
   $scope.requestNotReady = ->
     $scope.getCount() == 0 || !$scope.isUserPropertiesDefined() ||
       $scope.getSelectedLocationName() == null || typeof sharedData.timeslots == 'undefined'
-
 
   $scope.openModal = (errorCode) ->
     switch errorCode
@@ -63,6 +63,7 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
     ons.navigator.pushPage(pagePath, { animation: "slide" })
 
   $scope.doRequest = ->
+    $scope.requestSent = true
     # first, fetch invitees' hashes
     inviteeHashes = sharedData.contacts.filter((contact) -> contact.selected).map((contact) -> contact.telephoneHash)
     # second, fetch the own users md5
@@ -75,6 +76,7 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
         currentPosition: coords
         timeslots: sharedData.timeslots
       server.send(request).then (response) ->
+
         if response.data.subjects.length == 0
           sharedData.responseErrorId = constants.ERROR_BY_NO_MATCH
           $scope.openModal(constants.ERROR_BY_NO_MATCH)
@@ -83,16 +85,19 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
           console.log "sharedData is", sharedData.responseData
           sharedData.responseErrorId = constants.NO_ERROR
           pushPage("showResultsSuccessPage.html")
+        $scope.requestSent = false
       , (error) ->
         sharedData.responseErrorId = constants.ERROR_BY_NO_SERVER_RESPONSE
         sharedData.responseError = angular.copy(error)
         #pushPage("showResultsFailurePage.html")
         $scope.openModal(constants.ERROR_BY_NO_SERVER_RESPONSE)
+        $scope.requestSent = false
     , (error) ->
       sharedData.responseErrorId = constants.ERROR_BY_RETRIEVING_POSITION
       sharedData.responseError = angular.copy(error)
       #pushPage("showResultsFailurePage.html")
       $scope.openModal(constants.ERROR_BY_RETRIEVING_POSITION)
+      $scope.requestSent = false
 
 
   # determines current selected type, can be either location or GPS
