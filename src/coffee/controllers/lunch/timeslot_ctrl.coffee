@@ -39,7 +39,6 @@ timeslotsctrl = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, s
           endTime: new Date(Date.parse("#{dateString}, #{timeslot.endTime}")).toISOString()
         }
       )
-    console.log "timeslots", isoTimeSlot
     sharedData.timeslots = isoTimeSlot
 
   _setSharedTimeslotData()

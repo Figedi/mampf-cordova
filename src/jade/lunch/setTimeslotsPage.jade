@@ -23,4 +23,4 @@ ons-page.center(ng-controller="TimeslotCtrl")
   | Start- und Endzeit festlegen
   ons-row(align="center")
     ons-col
-      ons-button(ng-click="ons.navigator.popPage();") Speichern
+      ons-button(ng-click="saveTimeSlots() && ons.navigator.popPage();") Speichern
