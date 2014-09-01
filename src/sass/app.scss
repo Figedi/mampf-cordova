@@ -115,15 +115,19 @@ input.ng-invalid {
 .bordered {
   border: 1px solid #fff;
 }
-
+.listContent {
+  width: calc(100% - 100px);
+}
 .listIcons {
+  width: 120px;
+  box-sizing: border-box;
   position: absolute;
   top: 7px;
-  right: 5px;
+  right: 0;
   a {
+    margin-left: 10px;
     width: 50px;
     color: black;
-    margin-left: 10px;
     i {
       font-size: 20px;
     }

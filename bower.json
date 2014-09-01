@@ -29,8 +29,7 @@
     "lodash": "~2.4.1",
     "angular-ui-map": "~0.5.0",
     "angularLocalStorage": "~0.1.7",
-    "angular-ui-utils": "bower-validate",
-    "ngAnimate": "*"
+    "angular-ui-utils": "bower-validate"
   },
   "overrides": {
     "onsenui": {

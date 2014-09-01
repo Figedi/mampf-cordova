@@ -33,12 +33,6 @@ contactsList = ['$scope', 'contactChooser', 'sharedData', 'storage', 'config', '
     navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)
 
   $scope.editContact = ($event, contact) ->
-
-    targetClass = angular.element($event.target).attr('class')
-    console.log "targetClass", targetClass, ~~targetClass.indexOf("fa")
-    # disallow parent/child click events to bubble up (deleteContacts child event
-    # bubbles up to the editContact click eventhandler)
-    return if targetClass.indexOf("fa") >= 0
     sharedData.contact = contact
     contactsNav.pushPage('partials/contacts/edit_contact.html', { animation: 'fade' })
 

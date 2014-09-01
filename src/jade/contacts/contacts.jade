@@ -7,8 +7,9 @@ ons-navigator(ng-controller="ContactListCtrl", var="contactsNav")
           ons-icon(icon="plus")
     section(style="padding: 8px")
       ons-list
-        ons-list-item(ng-repeat="contact in contacts track by $index", ng-click="editContact($event, contact)")
-          | {{contact.displayName}}
+        ons-list-item(ng-repeat="contact in contacts track by $index")
+          .listContent(ng-click="editContact($event, contact)")
+            | {{contact.displayName}}
           .listIcons
             a(ng-click="deleteContact($index)")
               i.fa.fa-border.fa-fw.fa-times
