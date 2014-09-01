@@ -62,7 +62,15 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
     sharedData.location = location
     ons.navigator.pushPage(pagePath, { animation: "slide" })
 
+  sanitizeTimeslots = ->
+    _.unique sharedData.timeslots, (date) ->
+      start = +new Date(Date.parse(date.startTime))
+      end = +new Date(Date.parse(date.endTime))
+      "#{start}:#{end}"
+
+
   $scope.doRequest = ->
+
     $scope.requestSent = true
     # first, fetch invitees' hashes
     inviteeHashes = sharedData.contacts.filter((contact) -> contact.selected).map((contact) -> contact.telephoneHash)
@@ -74,9 +82,9 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
         identity: telephoneHash
         invitees: inviteeHashes
         currentPosition: coords
-        timeslots: sharedData.timeslots
+        timeslots: sanitizeTimeslots()
+      console.log "timeslots", request.timeslots
       server.send(request).then (response) ->
-
         if response.data.subjects.length == 0
           sharedData.responseErrorId = constants.ERROR_BY_NO_MATCH
           $scope.openModal(constants.ERROR_BY_NO_MATCH)
