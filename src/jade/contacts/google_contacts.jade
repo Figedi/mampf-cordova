@@ -1,4 +1,4 @@
-ons-page(ng-controller="googleContactsCtrl")
+ons-page(ng-controller="GoogleContactsCtrl")
   ons-toolbar
     .center Google Kontakte
     .right
@@ -6,7 +6,7 @@ ons-page(ng-controller="googleContactsCtrl")
         ons-icon(icon="refresh")
   section(style="padding: 8px")
     ons-list
-      ons-list-item(ng-repeat="contact in contacts", ng-class="{ selected: contact.selected }", ng-click="toggleContact(contact)") {{contact.displayName}}
+      ons-list-item(ng-repeat="contact in googleContacts", ng-class="{ selected: contact.selected }", ng-click="toggleContact(contact)") {{contact.displayName}}
 
   section(align="center")
     ons-button(ng-click="contactsNav.popPage()") Hinzufügen

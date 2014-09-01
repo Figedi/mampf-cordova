@@ -20,7 +20,5 @@ ons-page.center(ng-controller="AddLocationCtrl")
 
   ons-row(style="padding: 16px 8px 0px")
     ons-col(align="center")
-      ons-button(modifier="large",disabled="!markerExistent()",ng-click="addNewLocation() && ons.navigator.popPage();") Hinzufügen
-      br
-      span.form-error-description(ng-show="!markerExistent()")
-        | Google Maps nicht verfügbar
+      ons-button(ng-hide="markerExistent()", disabled="true", modifier="large") Kein Marker gefunden
+      ons-button(ng-show="markerExistent()", modifier="large", ng-click="addNewLocation() && ons.navigator.popPage();") Hinzufügen

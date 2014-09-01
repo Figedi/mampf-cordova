@@ -1,4 +1,4 @@
-ons-page.center(ng-controller="LunchResponseCtrl")
+getons-page.center(ng-controller="LunchResponseCtrl")
   ons-toolbar
     .center Ergebnisse - Erfolgreiche Suche
 
@@ -12,28 +12,8 @@ ons-page.center(ng-controller="LunchResponseCtrl")
   section(style="padding: 8px")
       ons-list
         ons-list-header Ausgewählte Kontakte
-        ons-list-item(ng-repeat="contact in selectedContacts") {{contact.displayName}}
-
-  section.center(style="padding: 8px")
-  .greatButtons
-    ons-row(style="padding: 8px")
-      ons-col(align="center")
-        ons-button(ng-click="ons.navigator.pushPage('partials/chooseContactsPage.html', { animation : 'slide' } )" )
-          .leftIconButton
-            ons-icon(icon="group")
-          .center
-            | Kontakte anzeigen
-    ons-row(style="padding: 8px")
-      ons-col(align="center")
-        ons-button(ng-click="ons.navigator.pushPage('partials/profile.html', { animation : 'slide' } )" )
-          .leftIconButton
-            ons-icon(icon="user")
-          .center
-            | Profil anzeigen
-    ons-row(style="padding: 8px")
-      ons-col(align="center")
-        ons-button(ng-click="ons.navigator.pushPage('partials/lunch.html', { animation : 'slide' } )" )
-          .leftIconButton
-            ons-icon(icon="cutlery")
-          .center
-            | Neue Anfrage
+        ons-list-item(ng-repeat="contact in selectedContacts")
+          | {{contact.displayName}}
+          .listIcons
+            a(href="tel:{{contact.telephone}}")
+              i.fa.fa-border.fa-fw.fa-mobile

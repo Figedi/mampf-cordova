@@ -1,19 +1,19 @@
-contacts = [ '$scope', 'sharedData', 'storage', 'config', 'googleContacts', ($scope, sharedData, storage, config, googleContacts) ->
+contacts = [ '$scope', 'sharedData', 'storage', 'config', 'googleContacts', '_', ($scope, sharedData, storage, config, googleContacts, _) ->
 
-  $scope.contacts = [] #do not inherit from parent scope
-
+  $scope.googleContacts = [] #do not inherit from parent scope
+  originalContacts = storage.get('contacts')
   $scope.refreshContacts = ->
-    console.log "refreshing contacts"
     googleContacts.getAll().then (contacts) ->
-      $scope.contacts = contacts
+      $scope.googleContacts = contacts
 
   $scope.refreshContacts()
 
   $scope.toggleContact = (contact) ->
     contact.selected = not contact.selected
-    sharedData.contacts = $scope.contacts.filter (contact) -> contact.selected
-
-
+    contacts = angular.copy(originalContacts)
+    selectedContacts = $scope.googleContacts.filter (contact) -> contact.selected
+    mergedContacts = contacts.concat(selectedContacts)
+    storage.set('contacts', mergedContacts)
 
 ]
 

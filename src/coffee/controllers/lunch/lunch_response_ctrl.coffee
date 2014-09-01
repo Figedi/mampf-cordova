@@ -1,6 +1,6 @@
-lunchResponse = ['$http', '$scope', 'sharedData', 'storage', 'config', 'constants', 'geoLocation', '$q', '$rootScope', ($http, $scope, sharedData, storage, config, constants, geoLocation, $q, $rootScope) ->
+lunchResponse = ['$scope', 'sharedData', 'config', 'constants', ($scope, sharedData, config, constants) ->
 
-  $scope.responseData = angular.copy(sharedData.responseData)
+  $scope.selectedContacts = []
 
   $scope.setTitle = ->
     switch sharedData.responseErrorId
@@ -10,23 +10,20 @@ lunchResponse = ['$http', '$scope', 'sharedData', 'storage', 'config', 'constant
         "Fehlerbehaftete Suche"
 
   $scope.setContacts = ->
-    $scope.selectedContacts = []
-
     return unless sharedData.responseErrorId == constants.NO_ERROR
-
-    for contact in sharedData.contacts.filter( (contact) -> contact.selected )
-      $scope.selectedContacts.push(contact) if contact.telephoneHash in $scope.responseData.subjects
+    $scope.selectedContacts = sharedData.contacts.filter (contact) ->
+      contact.telephoneHash in sharedData.responseData.subjects
 
   # set selected contacts
   $scope.setContacts()
 
   $scope.getEnd = ->
     date = new Date(sharedData.responseData.timeslot.endTime)
-    date.toLocaleTimeString('de', {hour: '2-digit', minute:'2-digit'})
+    date.toLocaleTimeString('de', { hour: '2-digit', minute:'2-digit' })
 
   $scope.getStart = ->
     date = new Date(sharedData.responseData.timeslot.startTime)
-    date.toLocaleTimeString('de', {hour: '2-digit', minute:'2-digit'})
+    date.toLocaleTimeString('de', { hour: '2-digit', minute:'2-digit' })
 ]
 
 module.exports = lunchResponse

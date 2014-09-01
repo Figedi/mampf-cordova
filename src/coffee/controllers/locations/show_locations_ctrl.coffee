@@ -14,16 +14,14 @@ showLocations = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, s
     sharedData.location = location
     ons.navigator.pushPage('partials/locations/locationDetail.html', { animation: "fade" })
 
-  $scope.deleteAllSelected = ->
-    $scope.deleteLocation(location) for location in $scope.locations.filter((location) -> location.selected)
-
   $scope.deleteLocation = ($index) ->
     $scope.locations.splice($index,1)
 
   #update the scope with new locations if changed when locationpage is popped
   locationsNav.on 'prepop', ->
-    if sharedData.locations.length
-      $scope.locations = sharedData.locations
+    $scope.locations = storage.get('locations')
+    # if sharedData.locations.length
+    #   $scope.locations = sharedData.locations
 
 ]
 

@@ -68,7 +68,6 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
     # second, fetch the own users md5
     telephoneHash = $scope.user.telephoneHash
     # third either fetch the current position or use predefined destination
-    console.log "do request before"
     _getLocation().then (coords) ->
       request =
         identity: telephoneHash
@@ -78,10 +77,10 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
       server.send(request).then (response) ->
         if response.data.subjects.length == 0
           sharedData.responseErrorId = constants.ERROR_BY_NO_MATCH
-          #pushPage("showResultsFailurePage.html")
           $scope.openModal(constants.ERROR_BY_NO_MATCH)
         else
           sharedData.responseData = angular.copy(response.data)
+          console.log "sharedData is", sharedData.responseData
           sharedData.responseErrorId = constants.NO_ERROR
           pushPage("showResultsSuccessPage.html")
       , (error) ->

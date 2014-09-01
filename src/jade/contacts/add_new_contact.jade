@@ -1,5 +1,7 @@
 ons-page(ng-controller="AddNewContactCtrl")
   ons-toolbar
+    .left
+      ons-back-button(ons-if-platform="ios") Zurück
     .center Kontakt hinzufügen
   section(style="padding: 8px")
     form(name="contactAddForm", novalidate)
@@ -24,9 +26,11 @@ ons-page(ng-controller="AddNewContactCtrl")
           br
           span.form-error-description(ng-show="numberExists()")
             | Nummer existiert bereits
+
   ons-row(style="padding: 8px")
     ons-col(align="center")
-      ons-button(ng-show="numberExists()",disabled="true", modifier="large", ng-click="addNewContact() && contactsNav.popPage();") Hinzufügen
-      ons-button(ng-hide="numberExists()", modifier="large", ng-click="addNewContact() && contactsNav.popPage();") Hinzufügen
+      ons-button(ng-show="numberExists() || contactAddForm.$invalid", disabled="true", modifier="large") Hinzufügen
+      ons-button(ng-hide="numberExists() || contactAddForm.$invalid", modifier="large", ng-click="addNewContact() && contactsNav.popPage();") Hinzufügen
+
 
 

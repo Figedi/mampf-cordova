@@ -7,8 +7,8 @@ ons-navigator(var="locationsNav")
           ons-icon(icon="plus")
     section(style="padding: 8px" )
       ons-list
-        ons-gesture-detector
-          mampf-list-item(ng-repeat="location in locations") {{location.locationName}}
-
-
-
+        ons-list-item(ng-repeat="location in locations", ng-click="editLocation(location)")
+          | {{location.locationName}}
+          .listIcons
+            a(ng-click="deleteLocation($index)")
+              i.fa.fa-border.fa-fw.fa-times

@@ -24,8 +24,8 @@ app.factory factories
 controllers =
   #contacts (addLocation in ContactList)
   ContactListCtrl    : require('./controllers/contacts/contact_list_ctrl.coffee')
-  ContactDetailsCtrl : require('./controllers/contacts/contact_details_ctrl.coffee')
-  googleContactsCtrl : require('./controllers/contacts/google_contacts_ctrl.coffee')
+  EditContactCtrl    : require('./controllers/contacts/edit_contact_ctrl.coffee')
+  GoogleContactsCtrl : require('./controllers/contacts/google_contacts_ctrl.coffee')
   AddNewContactCtrl  : require('./controllers/contacts/add_new_contact_ctrl.coffee')
 
   #locations
@@ -45,9 +45,11 @@ controllers =
 
 app.controller controllers
 
-#overwrite onsen directive list-item
-#
-angular.module('onsen').directive 'mampfListItem', require('./directives/ons_list_item.coffee')
+directives =
+  mampfListItem: require('./directives/ons_list_item.coffee')
+
+app.directive directives
+
 
 # listen to onGoogleReady callback since we are loading the Maps API asynchronously
 # after that we can bootstrap the application for the body element

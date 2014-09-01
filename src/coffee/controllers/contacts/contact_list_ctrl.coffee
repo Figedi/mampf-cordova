@@ -26,8 +26,21 @@ contactsList = ['$scope', 'contactChooser', 'sharedData', 'storage', 'config', '
     contact.selected = not contact.selected
     sharedData.contacts = $scope.contacts
 
+  $scope.deleteContact = ($index) ->
+    $scope.contacts.splice($index,1)
+
   $scope.isSmartphone = ->
     navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)
+
+  $scope.editContact = ($event, contact) ->
+
+    targetClass = angular.element($event.target).attr('class')
+    console.log "targetClass", targetClass, ~~targetClass.indexOf("fa")
+    # disallow parent/child click events to bubble up (deleteContacts child event
+    # bubbles up to the editContact click eventhandler)
+    return if targetClass.indexOf("fa") >= 0
+    sharedData.contact = contact
+    contactsNav.pushPage('partials/contacts/edit_contact.html', { animation: 'fade' })
 
   $scope.contactAdd = ->
     contactsProvider = storage.get('provider')
@@ -56,12 +69,10 @@ contactsList = ['$scope', 'contactChooser', 'sharedData', 'storage', 'config', '
       contactsNav.pushPage('partials/contacts/google_contacts.html')
     else if contactsProvider == 'manual'
       contactsNav.pushPage('partials/contacts/add_new_contact.html')
+
     #update the scope with new contacts if changed when contactpage is popped
     contactsNav.on 'prepop', ->
-      if sharedData.contacts.length
-        console.log "contacts after", _.merge(sharedData.contacts,$scope.contacts)
-        $scope.contacts = _.merge(sharedData.contacts,$scope.contacts)
-        console.log "contacts after after", $scope.contacts
+      $scope.contacts = storage.get('contacts')
 
 ]
 
