@@ -37,7 +37,7 @@ contactsList = ['$scope', 'contactChooser', 'sharedData', 'storage', 'config', '
     contactsNav.pushPage('partials/contacts/edit_contact.html', { animation: 'fade' })
 
   $scope.contactAdd = ->
-    contactsProvider = storage.get('provider')
+    contactsProvider = storage.get('provider') || config.provider.type
     contactsProvider = 'manual' unless $scope.isSmartphone()
 
     if contactsProvider == 'local'
