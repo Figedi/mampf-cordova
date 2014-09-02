@@ -8,10 +8,11 @@
  *
  * @return {void} No explicit returnvalue needed
 ###
-lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constants', 'geoLocation', '$q', (server, $scope, sharedData, storage, config, constants, geoLocation, $q) ->
+lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constants', 'geoLocation', '$q', 'utils', (server, $scope, sharedData, storage, config, constants, geoLocation, $q, utils) ->
 
-  storage.bind($scope, 'user')
-  storage.bind($scope, 'timeslots')
+  #no storage binding for user/timeslots as they are not changed here
+  $scope.user = storage.get('user')
+  $scope.timeslots = storage.get('timeslots') || utils.getCurrentTime()
 
   $scope.requestSent = false
   # data binding doesnt seem to work without a request data model
@@ -21,7 +22,7 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
 
   $scope.requestNotReady = ->
     $scope.getCount() == 0 || !$scope.isUserPropertiesDefined() ||
-      $scope.getSelectedLocationName() == null || typeof sharedData.timeslots == 'undefined'
+      $scope.getSelectedLocationName() == null
 
   $scope.openModal = (errorCode) ->
     switch errorCode
@@ -53,6 +54,7 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
     if sharedData.timeslots?
       sharedData.timeslots.length
     else if $scope.timeslots?.length
+      console.log "scope timeslots defined"
       $scope.timeslots?.length
     else
       "Keine"
@@ -63,7 +65,10 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
     ons.navigator.pushPage(pagePath, { animation: "slide" })
 
   sanitizeTimeslots = ->
-    _.unique sharedData.timeslots, (date) ->
+    console.log "scope", utils.timeSlotConversion($scope.timeslots), "sharedData", sharedData.timeslots
+    timeslots = _.merge(utils.timeSlotConversion($scope.timeslots), sharedData.timeslots)
+    console.log "merge", timeslots
+    _.unique timeslots, (date) ->
       start = +new Date(Date.parse(date.startTime))
       end = +new Date(Date.parse(date.endTime))
       "#{start}:#{end}"
@@ -83,14 +88,13 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
         invitees: inviteeHashes
         currentPosition: coords
         timeslots: sanitizeTimeslots()
-      console.log "timeslots", request.timeslots
       server.send(request).then (response) ->
         if response.data.subjects.length == 0
           sharedData.responseErrorId = constants.ERROR_BY_NO_MATCH
           $scope.openModal(constants.ERROR_BY_NO_MATCH)
         else
+          sharedData.$wipe('locations', 'contacts', 'timeslots')
           sharedData.responseData = angular.copy(response.data)
-          console.log "sharedData is", sharedData.responseData
           sharedData.responseErrorId = constants.NO_ERROR
           pushPage("showResultsSuccessPage.html")
         $scope.requestSent = false
@@ -119,7 +123,6 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
       [constants.LOCATION_NOT_SET, null]
 
   # Helper method to fetch current position or predefined location
-  # @todo: Statics for reject
   _getLocation = ->
     deferred = $q.defer()
     [type, location] = _getLocationType()

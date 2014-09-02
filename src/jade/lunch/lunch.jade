@@ -39,3 +39,7 @@ ons-navigator(ng-controller="LunchRequestCtrl")
             .center
               ons-icon(icon="cutlery", spin="true")
               | Anfrage wird verarbeitet
+      ons-row(ng-hide="isUserPropertiesDefined()")
+        ons-col(align="center")
+          span.form-error-description
+            | Bitte eine Telefonnummer im Profil angeben

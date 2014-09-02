@@ -17,6 +17,7 @@ factories =
   sharedData         : require('./factories/shared_data.coffee')
   server             : require('./factories/server.coffee')
   googleContacts     : require('./factories/google_contacts.coffee')
+  utils              : require('./factories/utils.coffee')
 
 app.factory factories
 

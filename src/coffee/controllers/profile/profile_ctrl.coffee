@@ -7,8 +7,8 @@
 ###
 profile = ['$scope', 'md5', 'config', '_', 'storage', 'sharedData', ($scope, md5, config, _, storage, sharedData) ->
 
-  # save all user-data in localstorage, bind values to $scope.user
-  storage.bind($scope, 'user', { defaultValue: config.dummyUser })
+  # save all user-data in localstorage, bind values to $scope.use
+  $scope.user = storage.get('user') || config.dummyUser
   # bind provider to defaultValue of config, note that angularStorage uses
   # falsy values to detect whether a value is set, thus false/true for providers
   # or 0/1 is a baaad idea
@@ -26,6 +26,7 @@ profile = ['$scope', 'md5', 'config', '_', 'storage', 'sharedData', ($scope, md5
       $scope.user.telephone = newValue.replace(RegExp(" ", "g"), "")
       $scope.user.telephoneHash = md5.createHash(""+$scope.user.telephone)
       sharedData.user = $scope.user
+      storage.set('user', $scope.user)
   , 1000)
 
   $scope.setProvider = (type) -> $scope.provider = type

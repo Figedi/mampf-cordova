@@ -36,8 +36,8 @@ conf =
     }
   ]
   dummyUser:
-    telephone: "01522905094913"
-    telephoneHash: "d949dd7b976c60f70f6492ee673d6768"
+    telephone: "+49123123333"
+    telephoneHash: "logic"
   provider: # activate local provider as default
     type: 'local'
 module.exports = conf
