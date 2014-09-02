@@ -7,8 +7,10 @@
 chooseContacts = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, storage, sharedData) ->
   #if user already selected users, return the sharedData object
   if sharedData.contacts.length
+    console.log "sharedData.contacts", sharedData.contacts
     $scope.contactsForChoose = sharedData.contacts
   else #if no prior selection, return a new object
+    console.log "no prior selection"
     storage.bind($scope, 'contacts', { defaultValue: config.dummyContacts })
     if $scope.contacts.length
       $scope.contactsForChoose = angular.copy($scope.contacts)

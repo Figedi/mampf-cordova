@@ -10,11 +10,13 @@ chooseLocation = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, 
 
   #if user already selected users, return the sharedData object
   if sharedData.locations.length
+    console.log "sharedData.locations", sharedData.locations
     $scope.locationsForChoose = sharedData.locations
   else #if no prior selection, return a new object
+    console.log "no prior selection"
     storage.bind($scope, 'locations', { defaultValue: config.dummyLocations })
-    if $scope.locations
-      console.log "it works"
+    if $scope.locations.length
+
       $scope.locationsForChoose = angular.copy($scope.locations)
       location.selected = false for location in $scope.locationsForChoose
 

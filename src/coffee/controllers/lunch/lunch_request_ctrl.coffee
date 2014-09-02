@@ -54,7 +54,6 @@ lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constant
     if sharedData.timeslots?
       sharedData.timeslots.length
     else if $scope.timeslots?.length
-      console.log "scope timeslots defined"
       $scope.timeslots?.length
     else
       "Keine"

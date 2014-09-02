@@ -66,7 +66,14 @@ contactsList = ['$scope', 'contactChooser', 'sharedData', 'storage', 'config', '
 
     #update the scope with new contacts if changed when contactpage is popped
     contactsNav.on 'prepop', ->
+      oldContacts = _.map angular.copy($scope.contacts), (contact) -> contact.telephone
       $scope.contacts = storage.get('contacts')
+      #if sharedData has already preselected contacts, push new one onto it
+      if sharedData.contacts.length
+        difference = _.reject $scope.contacts, (contact) ->
+          contact.telephone in oldContacts
+        for contact in difference
+          sharedData.contacts.push(contact)
 
 ]
 

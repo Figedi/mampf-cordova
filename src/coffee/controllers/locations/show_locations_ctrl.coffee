@@ -19,9 +19,17 @@ showLocations = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, s
 
   #update the scope with new locations if changed when locationpage is popped
   locationsNav.on 'prepop', ->
+    oldLocations = _.map angular.copy($scope.locations), (location) ->
+      "#{location.latitude}:#{location.longitude}"
     $scope.locations = storage.get('locations')
-    # if sharedData.locations.length
-    #   $scope.locations = sharedData.locations
+    if sharedData.locations.length
+      #if sharedData has already preselected contacts, push new one onto it
+      difference = _.reject $scope.locations, (location) ->
+        "#{location.latitude}:#{location.longitude}" in oldLocations
+      console.log "difference is", difference, oldLocations
+      for location in difference
+        sharedData.locations.push(location)
+
 
 ]
 
