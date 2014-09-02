@@ -26,7 +26,6 @@ showLocations = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, s
       #if sharedData has already preselected contacts, push new one onto it
       difference = _.reject $scope.locations, (location) ->
         "#{location.latitude}:#{location.longitude}" in oldLocations
-      console.log "difference is", difference, oldLocations
       for location in difference
         sharedData.locations.push(location)
 

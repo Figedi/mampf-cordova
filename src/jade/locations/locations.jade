@@ -11,5 +11,5 @@ ons-navigator(var="locationsNav")
           .listContent(ng-click="editLocation(location)")
             | {{location.locationName}}
           .listIcons
-            a(ng-click="deleteLocation($index)", style="float:right;")
+            a(ng-click="deleteLocation($index)")
               i.fa.fa-border.fa-fw.fa-times

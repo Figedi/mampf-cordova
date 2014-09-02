@@ -11,8 +11,8 @@ ons-navigator(ng-controller="ContactListCtrl", var="contactsNav")
           .listContent(ng-click="editContact($event, contact)")
             | {{contact.displayName}}
           .listIcons
-            a(ng-click="deleteContact($index)")
-              i.fa.fa-border.fa-fw.fa-times
             a(href="tel:{{contact.telephone}}")
               i.fa.fa-border.fa-fw.fa-mobile
+            a(ng-click="deleteContact($index)")
+              i.fa.fa-border.fa-fw.fa-times
 
