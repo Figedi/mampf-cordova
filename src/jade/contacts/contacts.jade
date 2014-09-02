@@ -13,6 +13,6 @@ ons-navigator(ng-controller="ContactListCtrl", var="contactsNav")
           .listIcons
             a(href="tel:{{contact.telephone}}")
               i.fa.fa-border.fa-fw.fa-mobile
-            a(ng-click="deleteContact($index)")
+            a(ng-click="deleteContact($index, contact)")
               i.fa.fa-border.fa-fw.fa-times
 

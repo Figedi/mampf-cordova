@@ -26,8 +26,13 @@ contactsList = ['$scope', 'contactChooser', 'sharedData', 'storage', 'config', '
     contact.selected = not contact.selected
     sharedData.contacts = $scope.contacts
 
-  $scope.deleteContact = ($index) ->
+  $scope.deleteContact = ($index, contact) ->
+    #unique attribute is telephoneNumber, remove if sharedData has any
+    if sharedData.contacts.length
+      _.remove sharedData.contacts, (sharedContact) ->
+        sharedContact.telephone == contact.telephone
     $scope.contacts.splice($index,1)
+
 
   $scope.isSmartphone = ->
     navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)

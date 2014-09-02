@@ -10,6 +10,7 @@
 ###
 lunchRequest = ['server', '$scope', 'sharedData', 'storage', 'config', 'constants', 'geoLocation', '$q', 'utils', (server, $scope, sharedData, storage, config, constants, geoLocation, $q, utils) ->
 
+  console.log "ex", sharedData
   #no storage binding for user/timeslots as they are not changed here
   $scope.user = storage.get('user')
   $scope.timeslots = storage.get('timeslots') || utils.getCurrentTime()

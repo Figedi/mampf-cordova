@@ -20,12 +20,14 @@ conf =
       selected: false
       latitude: -6
       longitude: -7
+      createdAt: 1409669491150
     },
     {
       locationName: 'Bartown'
       selected: false
       latitude: -5
       longitude: -8
+      createdAt: 1409669516423
     }
   ]
 
@@ -38,6 +40,9 @@ conf =
   dummyUser:
     telephone: "+49123123333"
     telephoneHash: "logic"
+  shared:
+    contacts: []
+    locations: []
   provider: # activate local provider as default
     type: 'local'
 module.exports = conf

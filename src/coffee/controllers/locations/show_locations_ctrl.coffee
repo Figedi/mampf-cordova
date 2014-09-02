@@ -14,20 +14,34 @@ showLocations = ['$scope', 'config', 'storage', 'sharedData', ($scope, config, s
     sharedData.location = location
     ons.navigator.pushPage('partials/locations/locationDetail.html', { animation: "fade" })
 
-  $scope.deleteLocation = ($index) ->
+  $scope.deleteLocation = ($index, location) ->
+    if sharedData.locations.length
+      _.remove sharedData.locations, (sharedLocation) ->
+        sharedLocation.createdAt == location.createdAt
     $scope.locations.splice($index,1)
 
   #update the scope with new locations if changed when locationpage is popped
-  locationsNav.on 'prepop', ->
-    oldLocations = _.map angular.copy($scope.locations), (location) ->
-      "#{location.latitude}:#{location.longitude}"
-    $scope.locations = storage.get('locations')
-    if sharedData.locations.length
-      #if sharedData has already preselected contacts, push new one onto it
-      difference = _.reject $scope.locations, (location) ->
-        "#{location.latitude}:#{location.longitude}" in oldLocations
-      for location in difference
-        sharedData.locations.push(location)
+  locationsNav.on 'prepop', ($event) ->
+    #when we edited the page, we probably need to update sharedData
+    if $event.currentPage.name == "partials/locations/locationDetail.html"
+      #update the location in sharedData (if any)
+      if sharedData.locations.length
+        l = sharedData.location
+        sharedData.locations = _.map sharedData.locations, (location) ->
+          #if object is in sharedData, change selected attribute for it
+          if location.createdAt == l.createdAt
+            l.selected = location.selected
+            l
+          else
+            location
+      $scope.locations = storage.get('locations')
+      sharedData.$wipe('location')
+    #else addLocation
+    else
+      $scope.locations = storage.get('locations')
+      if sharedData.locations.length
+        sharedData.locations.push(sharedData.location)
+        sharedData.$wipe('location')
 
 
 ]

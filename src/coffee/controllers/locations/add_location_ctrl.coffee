@@ -30,10 +30,11 @@ addLocation = ['$scope', 'config', 'storage', 'sharedData', 'geoLocation', ($sco
       selected: false
       latitude: lat
       longitude: lng
+      createdAt: +new Date() #timestamp for unique value
     # add new location to sharedData and storage, saving is done
     $scope.locations.push(location)
     storage.set('locations', $scope.locations)
-    true
+    sharedData.location = location
 
   $scope.mapClick = ($event, $params) ->
     $scope.setMarkerPosition($params[0].latLng.lat(),$params[0].latLng.lng())

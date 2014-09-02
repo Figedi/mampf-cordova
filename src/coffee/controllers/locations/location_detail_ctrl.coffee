@@ -1,5 +1,5 @@
 ###*
- * @description Location-Detail-Controller: Content for Modal. Shows details about
+ * @description Location-Detail-Controller: Shows details about
  * a saved location on a map. Can rename locationname and relocate marker.
  *
  * Note that the $scope is inherited from ShowLocationsCtrl. Any changes made in
@@ -16,6 +16,7 @@ locationDetail = ['$scope', 'config', 'sharedData', '$timeout', 'storage', ($sco
     center: new google.maps.LatLng($scope.location.latitude, $scope.location.longitude)
     zoom: 15
     mapTypeId: google.maps.MapTypeId.ROADMAP
+
   $scope.mapClick = ($event, $params) ->
     [lat, lng] = [$params[0].latLng.lat(), $params[0].latLng.lng()]
     $scope.marker.setPosition(new google.maps.LatLng(lat, lng))
@@ -30,6 +31,10 @@ locationDetail = ['$scope', 'config', 'sharedData', '$timeout', 'storage', ($sco
       $scope.marker.setPosition(lngLat)
     else
       $scope.marker = new google.maps.Marker({ position: lngLat, map: $scope.modalMampfMap })
+
+  $scope.$watch 'location', (newValue) ->
+    return unless newValue
+    sharedData.location = newValue
   #refresh for the first time controller is invoked
   $timeout((-> $scope.refreshPosition()), 500)
 ]
